@@ -1,0 +1,28 @@
+
+@font-face {
+    font-family: 'Manchu';
+    src:	local('Manchu'),	url('/fonts/manchu/abxy') format('TrueType/OpenType');
+}
+@font-face {
+    font-family: 'Manchu Bold';
+    src:	local('Manchu Bold'),	url('/fonts/manchu/abxy_b') format('TrueType/OpenType');
+}
+
+@font-face {
+    font-family: 'Manchu Trans';
+    src:	local('Manchu Trans'),	url('/fonts/manchu/Ab_Trans_V') format('TrueType/OpenType');
+}
+
+@font-face {
+    font-family: 'Manchu Trans Bold';
+    src:	local('Manchu Trans Bold'),	url('/fonts/manchu/Ab_Trans_V_B') format('TrueType/OpenType');
+}
+
+.manchu {	-webkit-text-orientation: sideways-right;}
+
+.mnc-blod {
+    font-family: 'Manchu Bold';
+    font-size: 1em;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}

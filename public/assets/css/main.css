@@ -1,0 +1,370 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    font-family: 'Manchu Bold';
+    font-size: 2em;
+    background-color: #f2f2f2;
+    height: 100%;
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}
+
+.container-dict {
+    font-family: 'Manchu Bold';
+    font-size: 2em;
+    background-color: #f2f2f2;
+    height: auto;
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways;
+}
+
+.cover img {
+    left: 2%;
+    top: 2%;
+    width: 80%;
+    height: auto;
+    margin: 0;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content-wrap {
+    padding: 10px;
+    border: #9d9d9d solid 1px;
+}
+
+.input:empty::before {
+    content: attr(placeholder);
+}
+
+/**css样式*/
+.input {
+    width: auto;
+    height: auto;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+input.input {
+    padding: 10px;
+    width: auto;
+    height: auto;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    background: white;
+    transform: rotate(90deg);
+}
+
+.input:empty::before {
+    content: attr(placeholder);
+}
+
+.chinese-upright {
+    font-size: 0.7em;
+    font-family: 'arial,sans-serif';
+    -webkit-text-orientation: upright;
+    text-orientation: upright;
+}
+
+.english-tip {
+    font-size: 0.6em;
+    font-family: 'arial,sans-serif';
+}
+
+.mnc {
+    font-family: 'Manchu Bold';
+    font-size: 1em;
+    background-color: #f2f2f2;
+    height: 100%;
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}
+
+.en {
+    font-size: 0.6em;
+    font-family: 'arial,sans-serif';
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}
+
+.mnc-trans {
+    font-size: 0.6em;
+    font-family: 'Manchu Trans';
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: upright;
+    text-orientation: upright;
+}
+
+.mnc-trans-blod {
+    font-size: 0.6em;
+    font-family: 'Manchu Trans Bold';
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}
+
+.zh {
+    font-size: 0.7em;
+    font-family: 'arial,sans-serif';
+    -webkit-text-orientation: upright;
+    text-orientation: upright;
+}
+
+#dictWrapper {
+    font-family: 'Manchu Bold';
+    font-size: 0.5em;
+    background-color: #f2f2f2;
+    height: calc(100% - 10px);
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+    font-family: 'arial,sans-serif';
+}
+
+.english-tip-right {
+    font-size: 0.6em;
+    font-family: 'arial,sans-serif';
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+    font-family: 'arial,sans-serif';
+}
+
+.english-right {
+    font-size: 0.3em;
+    font-family: 'arial,sans-serif';
+}
+
+.box {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 30px;
+    height: 100%;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.nav-button {
+    border: #6d6d6d 2px solid;
+    margin: 2px;
+    font-size: 0.6em;
+    background: #A6E22D;
+}
+
+a {
+    text-decoration: none;
+    color: #002257;
+}
+
+.list-group-item {
+    list-style: none;
+}
+
+.song-title {
+    display: block;
+    background: inherit;
+    border-left: #6d6d6d 1px solid;
+    border-top: #6d6d6d 1px solid;
+    border-bottom: #6d6d6d 1px solid;
+}
+
+.song-title:hover {
+    background: #cccccc;
+}
+
+.song-title:nth-last-child(2) {
+    border-right: #6d6d6d 1px solid;
+}
+
+.playertoolbar {
+    margin: 0px;
+    margin-top: 30px;
+    height: fit-content;
+    width: 30px;
+    left: 0;
+    z-index: 1;
+    background: #A6E22D;
+}
+
+.playerbutton {
+    font-size: 22px;
+    float: left;
+    left: 0;
+    right: 0px;
+    z-index: 1;
+    margin-top: 3px;
+    width: 30px;
+    height: 30px;
+    background: #A6E22D;
+}
+
+.box1 {
+    left: 0;
+    z-index: 1;
+    background: #007bff;
+}
+
+.box2 {
+    left: 30px;
+    z-index: 1;
+    background: #ffc107;
+}
+
+.box3 {
+    left: 60px;
+    background: #f4516c;
+}
+
+#to_left {
+    z-index: 10;
+    position: fixed;
+    top: 1px;
+    right: 50px;
+    width: 37px;
+    height: 36px;
+}
+
+/*the highlight color of the current lyric line*/
+.current-line-0 {
+    color: #fec514;
+}
+
+.current-line-1 {
+    color: #ff1493;
+}
+
+.current-line-2 {
+    color: #adff2f;
+}
+
+.current-line-3 {
+    color: #c617e8;
+}
+
+.current-song, .current-song a {
+    color: #A6E22D;
+}
+
+table.gridtable {
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+
+.pagination {
+    list-style-type: none
+}
+
+.pagination li {
+    display: inline-block;
+/ / 使li对象显示为一行
+}
+
+#dictWrapper {
+    font-family: 'Manchu Bold';
+    font-size: 0.5em;
+    background-color: #f2f2f2;
+    height: calc(100% - 10px);
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+    font-family: 'arial,sans-serif';
+}
+
+.container-dict {
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    display: inline-block;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+    font-family: 'arial,sans-serif';
+}
