@@ -55,7 +55,7 @@ class DictController extends Controller
 
         $r = $this->queryInner();
 
-        return view('dict/index',$r);
+        return view('dict/search',$r);
     }
 
     public function index(\Psr\Log\LoggerInterface $log){

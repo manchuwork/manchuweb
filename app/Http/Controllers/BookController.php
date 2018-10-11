@@ -15,7 +15,7 @@ class BookController extends Controller
         //$log = $app->make('log');
         //$posts = Post::orderBy('created_at','desc')->withCount('comments')->withCount('zans')->paginate(5);
         $books = Book::orderBy('created_at','desc')
-            ->paginate(5);
+            ->paginate(6);
 
 
         return view('book/index',compact('books'));
