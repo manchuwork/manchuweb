@@ -51,4 +51,20 @@ php artisan serve
 127.0.0.1:8000
 
 ##其他：
+脚本
+```bash
+./package
+```
+提供打包到服务器的功能，针对虚拟空间必须到在根目录中放 index.php作为访问的问题
+替换 配置文件.env
+```bash
+mv ~/.env $TARGET_LARAVEL_DIR/.env
 
+```
+同时替换index.php,server,php文件
+
+脚本
+```bash
+./package_local
+```
+使用项目中的.env配置文件，用来测试重新打包结构后的网站是否正常
