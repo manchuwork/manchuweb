@@ -1,0 +1,5 @@
+app/public/
+framework/cache/
+framework/sessions/
+framework/views/
+logs/
