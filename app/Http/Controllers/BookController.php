@@ -168,7 +168,13 @@ class BookController extends Controller
         $this->middleware('auth');
         $this->authorize('delete', $book);
 
+        $oldFile = $book->pic;
         $book ->delete();
+
+        if(isset($oldFile)){
+            ImageTool::delete($oldFile);
+
+        }
         return redirect("/books/");
     }
 }

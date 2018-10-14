@@ -11,6 +11,12 @@
     <a href="/books">
         <span class="zh">图书列表</span></span>
     </a>
+    <a href="/lyrics">
+        <span class="zh">满语歌词LRC</span></span>
+    </a>
+    <a href="/play" target="_blank">
+        <span class="zh">音乐播放器</span></span>
+    </a>
     <a href="/ime_manchu" target="_blank">
         <span class="zh">满语在线输入法</span></span>
     </a>

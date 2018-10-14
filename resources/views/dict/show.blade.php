@@ -18,7 +18,7 @@
 
         @if(!empty($dict->pic))
             <div>
-                <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
+                <img src="{!! asset('/pic/'.$dict->pic) !!}" alt="图片">
             </div>
         @endif
         <p class="en">{{$dict->created_at}} by <a href="#">{{$dict->user->name}}</a></p>

@@ -87,4 +87,12 @@ Route::get('/dict', '\App\Http\Controllers\DictController@queryWord');
 
 Route::resource("books",'\App\Http\Controllers\BookController');
 
+
+// 音乐
+Route::get('/play', '\App\Http\Controllers\PlayerController@index');
+
+Route::resource("lyrics",'\App\Http\Controllers\LyricController');
+Route::get("lyric/search",'\App\Http\Controllers\LyricController@search');
+
+
 require_once('resource.php');

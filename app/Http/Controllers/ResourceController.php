@@ -26,6 +26,30 @@ class ResourceController extends Controller
         header ("Cache-Control: max-age=$interval");
     }
 
+    public function text(){
+        $this->headerCache();
+
+        //获取当前的url
+        $path = request()->path();
+        $needle = "text";
+        $realpath = substr_replace($path,"",strpos($path,$needle),strlen($needle));
+
+        $path = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$realpath)  ;
+
+
+
+        if(!file_exists($path)){
+            echo 'not found '.$path;
+            //报404错误
+            header("HTTP/1.1 404 Not Found");
+            header("Status: 404 Not Found");
+            exit;
+        }
+        //输出图片
+        header('Content-type: text/plain');
+        echo file_get_contents($path);
+        exit;
+    }
 
 
     public function pic(){

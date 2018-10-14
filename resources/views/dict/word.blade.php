@@ -14,7 +14,7 @@ try{
                 +'  <div><span class="zh">「转写」</span> <span class="en">{!! $dict->trans !!}</span></div>'
                 +'  <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>'
                 @if(!empty($dict->pic))
-                    +'   <div> <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片"></div>'
+                    +'   <div> <img src="{!! asset('/pic/'.$dict->pic) !!}" alt="图片"></div>'
                 @endif
                 {{--+'   <p class="blog-post-meta en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a> <a href="/user/{{$dict->user->id}}" class="zh">{{$dict->user->name}}</a></p>'--}}
             +'  </div>'
