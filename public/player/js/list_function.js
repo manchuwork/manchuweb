@@ -352,10 +352,6 @@ function searchSong(keywords,autoPlay= true){
 			mainList.find(".list-item").click(mobileClickPlay);
 			//移动端列表右边信息按钮的点击
 			$(".list-mobile-menu").click(mobileListMenu);
-
-			if(autoPlay){
-				$(".list-item:first .list-menu .icon-play").click();
-			}
 		}
 	});
 }

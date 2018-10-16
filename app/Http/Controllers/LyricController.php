@@ -45,43 +45,35 @@ class LyricController extends Controller
             }
         }
 
-
-        $lyrics = Lyric::where('title', '=', "$title")
-
-            ->orderBy('created_at','desc')->paginate(1);
         if(empty($lyrics)){
-            $lyrics = Lyric::where('title', 'like', "%{$title}%")
+            $lyrics = Lyric::where('title', '=', "$title")
 
                 ->orderBy('created_at','desc')->paginate(1);
+            if(empty($lyrics)){
+                $lyrics = Lyric::where('title', 'like', "%{$title}%")
+
+                    ->orderBy('created_at','desc')->paginate(1);
+            }
         }
 
         if(isset($lyrics) && sizeof($lyrics) > 0){
 
-            $this->headerCache();
-
             //获取当前的url
             $path = $lyrics[0]->file;
-            //dd($path);
-            $needle = "text";
-//            $realpath = substr_replace($path,"",strpos($path,$needle),strlen($needle));
 
             $path = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$path)  ;
 
-
-
             if(!file_exists($path)){
-                echo 'not found '.$path;
                 //报404错误
-                return response(" not find when find title:". $title.' ,author:'. $author, 404);
+                return response('');
 
             }
-
 
             return $this->res(file_get_contents($path), $contentType, "*");
 
         }
 
-        return response("not find ". $title.' '. $author, 404);
+        return response('');
 
     }
 
