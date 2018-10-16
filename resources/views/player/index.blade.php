@@ -19,7 +19,7 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="x5-page-mode" content="app">
 
-    <title>Lily_music</title>
+    <title>满族空间音乐播放器</title>
 
     <!-- 引入jQuery官方类库 -->
     <script src="/player/js/jquery.min.js"></script>
@@ -40,6 +40,7 @@
 <div class="header">
     <div class="logo">
         满族空间 音乐
+        <a href="/">满族空间</a>
     </div>
 </div>
 

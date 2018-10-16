@@ -75,7 +75,9 @@ class LyricController extends Controller
                 return response(" not find when find title:". $title.' ,author:'. $author, 404);
 
             }
-            return $this->res(file_get_contents($path), $contentType);
+
+
+            return $this->res(file_get_contents($path), $contentType, "*");
 
         }
 
@@ -84,16 +86,25 @@ class LyricController extends Controller
     }
 
 
-    private function res($content, $contentType)
+    private function res($content, $contentType, $AccessControlAllowOrigin = null)
     {
 
         $timestamp = time();
         $interval = 60 * 60 * 24 * 512; // 6 hours
-        return response($content)
+
+        $r =
+         response($content)
             ->header('Content-Type', $contentType)
             ->header("Last-Modified", gmdate('r', $timestamp))
             ->header("Expires", gmdate("r", ($timestamp + $interval)))
             ->header("Cache-Control", "max-age=$interval");
+
+        if($AccessControlAllowOrigin != null){
+            $r->header("Access-Control-Allow-Origin", $AccessControlAllowOrigin);
+
+        }
+
+        return $r;
     }
 
     public function index(){

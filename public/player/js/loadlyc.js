@@ -10,6 +10,7 @@ var lastLyric;
 
 var lastLyricMnc;
 var DEFAULT_TIP_TEXT = '满族音乐空间';
+var lyricMncHost = '';////manchu.work'
 // 在歌词区显示提示语
 function lyricTip(str) {
     lyricArea.html("<li class='lyric-tip'>"+str+"</li>");     // 显示内容
@@ -19,10 +20,9 @@ function lyricTip(str) {
 // 歌曲加载完后的回调函数
 function lyricCallback(url,music_title, author) {
 
-    console.log('loadlyc.js url:'+ url+',music_title:'+music_title+",author:"+ author);
 
     $.ajax({  //异步请求获取歌词
-        url:'/lyric/search?title='+ music_title+'&author=' + author,
+        url:lyricMncHost +'/lyric/search?title='+ music_title+'&author=' + author,
         type:"get",
         success:function(data){
 
@@ -106,6 +106,9 @@ function lyricCallback(url,music_title, author) {
 
 // 强制刷新当前时间点的歌词 秒为单位
 function refreshLyric(time) {
+
+
+
     if(lyricText === '') return false;
 
     time = parseInt(time);  // 时间取整
@@ -114,19 +117,22 @@ function refreshLyric(time) {
         if(k >= time) break;
         i = k;      // 记录上一句的
     }
-
-    scrollLyric(i);
-
+    scrollLyricZh(i);
     i = 0;
-    for(var k in lyricTextMnc){
-        if(k >= time) break;
-        i = k;      // 记录上一句的
+    for(var j in lyricTextMnc){
+        if(j >= time) break;
+        i = j;      // 记录上一句的
     }
     scrollLyricMnc(i);
 }
 
 // 滚动歌词到指定句
 function scrollLyric(time) {
+    scrollLyricZh(time);
+    scrollLyricMnc(time);
+}
+
+function scrollLyricZh(time) {
     if(lyricText === '') return false;
 
     time = parseInt(time);  // 时间取整

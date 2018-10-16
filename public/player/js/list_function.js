@@ -310,7 +310,7 @@ function indexSong(){
 
 
 /* 更据关键词搜索，处理返回的json数据用了一点es6的语法 接入qq音乐搜索 */
-function searchSong(keywords){
+function searchSong(keywords,autoPlay= true){
 	$("#krserwords").blur();  //文本框失焦
 	var count = 1;
 	loading("搜索中...",500);
@@ -352,6 +352,10 @@ function searchSong(keywords){
 			mainList.find(".list-item").click(mobileClickPlay);
 			//移动端列表右边信息按钮的点击
 			$(".list-mobile-menu").click(mobileListMenu);
+
+			if(autoPlay){
+				$(".list-item:first .list-menu .icon-play").click();
+			}
 		}
 	});
 }
