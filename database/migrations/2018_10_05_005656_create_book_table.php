@@ -35,6 +35,11 @@ class CreateBookTable extends Migration
             $table->text('about_the_author')->default('');
             // 目录
             $table->text('catalogue')->default('');
+
+            // 是否有线上关联图书id
+            $table->integer('ol_book_id')->default(0);
+            // 外链内容路径 github-raw-path pdf阅读器 html
+            $table->string('external_git_path',512)->default('');
             $table->timestamps();
         });
     }
