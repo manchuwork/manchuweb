@@ -87,6 +87,12 @@ Route::get('/dict', '\App\Http\Controllers\DictController@queryWord');
 
 Route::resource("books",'\App\Http\Controllers\BookController');
 
+Route::resource("olbooks",'\App\Http\Controllers\OlBookController');
+
+Route::resource("olcatalogs",'\App\Http\Controllers\OlCatalogController');
+
+Route::resource("olcontent",'\App\Http\Controllers\OlContentController');
+
 
 // 音乐
 Route::get('/play', '\App\Http\Controllers\PlayerController@index');

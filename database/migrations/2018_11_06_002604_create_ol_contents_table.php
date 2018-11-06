@@ -15,7 +15,7 @@ class CreateOlContentTable extends Migration
     {
         //
         //
-        Schema::create('ol_content', function (Blueprint $table) {
+        Schema::create('ol_contents', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ol_book_id')->default(0);
             $table->integer('ol_catalog_id')->default(0);

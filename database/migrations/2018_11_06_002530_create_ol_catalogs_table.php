@@ -14,7 +14,7 @@ class CreateOlCatalogTable extends Migration
     public function up()
     {
         //
-        Schema::create('ol_catalog', function (Blueprint $table) {
+        Schema::create('ol_catalogs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ol_book_id')->default(0);
             // 目录项
