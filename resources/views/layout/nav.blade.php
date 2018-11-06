@@ -1,5 +1,5 @@
 <div class="content-wrap">
-    <a href="/home">
+    <a href="/home"><img src="/Manchu-120.jpg" />
     <span class="mnc">ᠮᠠᠨᠵᡠ<span class="zh">首页</span></span>
     </a>
     <a href="/posts">

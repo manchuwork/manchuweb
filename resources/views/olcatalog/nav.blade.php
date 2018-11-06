@@ -1,8 +1,8 @@
 <div class="content-wrap">
-    <a href="/books">
-        <span class="zh">图书列表</span></span>
+    <a href="/olcatalogs">
+        <span class="zh">目录列表</span></span>
     </a>
-    <a href="/books/create">
-        <span class="zh">图书创建</span>
+    <a href="/olcatalogs/create">
+        <span class="zh">目录创建</span>
     </a>
 </div>

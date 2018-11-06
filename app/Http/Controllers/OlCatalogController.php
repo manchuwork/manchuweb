@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\OlCatalog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OlCatalogController extends Controller
 {
@@ -12,11 +13,11 @@ class OlCatalogController extends Controller
     //
     public function index(){
 
-        $olCatalog = OlCatalog::orderBy('created_at','desc')
+        $olcatalogs = OlCatalog::orderBy('created_at','desc')
             ->paginate(6);
 
 
-        return view('olcatalog/index',compact('olCatalog'));
+        return view('olcatalog/index',compact('olcatalogs'));
     }
 
     public function show(OlCatalog $book){
@@ -32,7 +33,7 @@ class OlCatalogController extends Controller
         $this->middleware('auth');
 
         $olcatalog = [];
-        return view('ololcatalog/create',compact('olcatalog'));
+        return view('olcatalog/create',compact('olcatalog'));
     }
 
     public function store(){
