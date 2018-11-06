@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOlCatalogTable extends Migration
+class CreateOlCatalogsTable extends Migration
 {
     /**
      * Run the migrations.

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookTable extends Migration
+class CreateBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,16 +30,16 @@ class CreateBookTable extends Migration
             $table->string('pic',512)->default('');
             $table->integer('user_id')->default(0);
             // 简介
-            $table->text('brief_intro')->default('');
+            $table->text('brief_intro');
             // 作者简介
-            $table->text('about_the_author')->default('');
+            $table->text('about_the_author');
             // 目录
-            $table->text('catalogue')->default('');
+            $table->text('catalogue');
 
             // 是否有线上关联图书id
             $table->integer('ol_book_id')->default(0);
             // 外链内容路径 github-raw-path pdf阅读器 html
-            $table->string('external_git_path',512)->default('');
+            $table->string('ext_file_path',512)->default('');
             $table->timestamps();
         });
     }

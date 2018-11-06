@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\OlBook;
+use App\Tool\ImageTool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OlBookController extends Controller
 {
@@ -11,17 +13,17 @@ class OlBookController extends Controller
     //
     public function index(){
 
-        $olBooks = OLBook::orderBy('created_at','desc')
+        $olbooks = OlBook::orderBy('created_at','desc')
             ->paginate(6);
 
 
-        return view('olbook/index',compact('olBooks'));
+        return view('olbook/index',compact('olbooks'));
     }
 
-    public function show(OLBook $book){
+    public function show(OlBook $olbook){
         $isShow = true;
 
-        return view('olbook/show',compact('book','isShow'));
+        return view('olbook/show',compact('olbook','isShow'));
     }
 
     public function create(){
@@ -31,7 +33,7 @@ class OlBookController extends Controller
         $this->middleware('auth');
 
         $olbook = [];
-        return view('ololbook/create',compact('olbook'));
+        return view('olbook/create',compact('olbook'));
     }
 
     public function store(){
@@ -42,18 +44,7 @@ class OlBookController extends Controller
 
         $this->validate(request(),[
             'title' => 'required|string|max:125|min:1',
-//            'title_mnc' => 'string|max:512',
-//            'author' => 'required|string|max:125',
-//            'translator' => 'string|max:512',
-//            'publisher' => 'string|max:125',
-//            'page_count' => 'integer',
-//            'price' => 'integer',
-//            'binding' => 'string',
-//            'isbn' => 'string',
-//            'user_id' => 'integer',
-//            'brief_intro' => 'string',
-//            'about_the_author' => 'string',
-//            'catalogue' => 'string',
+
         ]);
 
         $user_id = \Auth::id();
@@ -64,19 +55,14 @@ class OlBookController extends Controller
         if(empty($pic)){
             $pic = '';
         }
-        $params = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
 
-        if(!isset($params['page_count'])){
-            $params['page_count']= 0;
-        }
 
-        if(!isset($params['price'])){
-            $params['price']=0;
-        }
+        $params = array_merge(request(['title','title_mnc','title_trans',
+            'author','pic','brief_intro','subtitle']),compact('user_id','pic'));
+
+
 
         $this->_unsetNull($params);
-        //dd ($params);
 
         OlBook::create($params);
 
@@ -110,26 +96,14 @@ class OlBookController extends Controller
         return view('olbook/edit',compact('olbook'));
     }
 
-    public function update(OLBook $olbook){
+    public function update(OlBook $olbook){
         if(!Auth::check()){
             return redirect("/login");
         }
         $this->middleware('auth');
         $this->validate(request(),[
             'title' => 'required|string|max:125|min:1',
-//            'title_mnc' => 'string|max:512',
-//            'author' => 'required|string|max:125',
-//            'translator' => 'string|max:512',
-//            'publisher' => 'string|max:125',
-//            'page_count' => 'integer',
-//            'price' => 'integer',
-//            'binding' => 'string',
-//            'isbn' => 'string',
-//            'pic' => 'string|max:512',
-//            'user_id' => 'integer',
-//            'brief_intro' => 'string',
-//            'about_the_author' => 'string',
-//            'catalogue' => 'string',
+
         ]);
 
         $this->authorize('update', $olbook);
@@ -137,8 +111,8 @@ class OlBookController extends Controller
 
         $pic = ImageTool::saveImgFromRequestByDateDir('pic','olbookpic',135,206);
 
-        $olbookNew = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id'));
+//        $olbookNew = array_merge(request(['title','title_mnc','title_trans',
+//            'author','pic','brief_intro','subtitle']),compact('user_id'));
 
         $oldPic = null;
 
@@ -158,7 +132,7 @@ class OlBookController extends Controller
         return redirect('/olbooks/'. $id);
     }
 
-    public function delete(OLBook $olbook){
+    public function delete(OlBook $olbook){
         if(!Auth::check()){
             return redirect("/login");
         }

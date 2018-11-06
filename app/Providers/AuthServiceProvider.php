@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Dict' => 'App\Policies\DictPolicy',
         'App\Book' => 'App\Policies\BookPolicy',
         'App\Lyric' => 'App\Policies\LyricPolicy',
+        'App\OlBook' => 'App\Policies\OlBookPolicy',
 
 
 
