@@ -27,6 +27,9 @@
     <h2><span class="">内容简介</span></h2>
     @can('update', $olbook)
         @if($isShow)
+            <a class="zh"  href="/olcatalogs/create?olbook_id={{$olbook->id}}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true">添加目录</span>
+            </a>
             <a class="zh"  href="/olbooks/{{$olbook->id}}/edit">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
             </a>

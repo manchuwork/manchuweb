@@ -33,7 +33,12 @@ class OlCatalogController extends Controller
         $this->middleware('auth');
 
         $olcatalog = [];
-        return view('olcatalog/create',compact('olcatalog'));
+
+        $olbookid= \request("olbook_id");
+
+
+
+        return view('olcatalog/create',compact('olcatalog','olbookid'));
     }
 
     public function store(){
@@ -43,42 +48,14 @@ class OlCatalogController extends Controller
         $this->middleware('auth');
 
         $this->validate(request(),[
-            'title' => 'required|string|max:125|min:1',
-//            'title_mnc' => 'string|max:512',
-//            'author' => 'required|string|max:125',
-//            'translator' => 'string|max:512',
-//            'publisher' => 'string|max:125',
-//            'page_count' => 'integer',
-//            'price' => 'integer',
-//            'binding' => 'string',
-//            'isbn' => 'string',
-//            'user_id' => 'integer',
-//            'brief_intro' => 'string',
-//            'about_the_author' => 'string',
-//            'catalogue' => 'string',
+            'entry' => 'required|string|max:125|min:1',
         ]);
 
         $user_id = \Auth::id();
 
-
-        $pic = ImageTool::saveImgFromRequestByDateDir('pic','olcatalogpic',135,206);
-
-        if(empty($pic)){
-            $pic = '';
-        }
-        $params = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
-
-        if(!isset($params['page_count'])){
-            $params['page_count']= 0;
-        }
-
-        if(!isset($params['price'])){
-            $params['price']=0;
-        }
+        $params = array_merge(request(['entry','entry_mnc','entry_trans']),compact('user_id'));
 
         $this->_unsetNull($params);
-        //dd ($params);
 
         OlCatalog::create($params);
 
