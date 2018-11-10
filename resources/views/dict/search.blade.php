@@ -29,7 +29,11 @@
                     <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
                 </div>
             @endif
-            <p class="blog-post-meta en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a> <a href="/user/{{$dict->user->id}}" class="zh">{{$dict->user->name}}</a></p>
+            <p class="blog-post-meta en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a>
+                @if(!empty($dict->user))
+                <a href="/user/{{$dict->user->id}}" class="zh">{{$dict->user->name}}</a>
+                @endif
+            </p>
         </div>
     @endforeach
     @elseif(isset($word))

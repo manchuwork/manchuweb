@@ -17,7 +17,11 @@
                         <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
                     </div>
                 @endif
-                <p class="en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a> <a href="/user/{{$dict->user->id}}" class="en">{{$dict->user->name}}</a></p>
+                <p class="en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a>
+                    @if(!empty($dict->user))
+                    <a href="/user/{{$dict->user->id}}" class="en">{{$dict->user->name}}</a>
+                    @endif
+                </p>
             </div>
         @endforeach
         <a href="/dicts">查看更多：字典</a>

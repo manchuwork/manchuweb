@@ -17,7 +17,9 @@
                     <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
                 </div>
                 @endif
+                @if(!empty($dict->user))
                 <div class="en">{{$dict->created_at}} {{$dict->user->name}}</div>
+                @endif
                 <p class="blog-post-meta zh"><a href="/dicts/{{$dict->id}}">查看详情</a>
                     {{--<a href="/user/{{$dict->user->id}}" class="zh"></a></p>--}}
             </div>
