@@ -1,6 +1,6 @@
 <div class="content-wrap">
-    <a href="/home"><img src="/Manchu-120.jpg" />
-    <span class="mnc">ᠮᠠᠨᠵᡠ<span class="zh">首页</span></span>
+    <a href="/home"><img src="/manchu_crest_50.png" alt="满族空间,www.manchu.work ,The manchu family crest"/>
+        <span class="zh">首页</span><span class="mnc">ᠮᠠᠨᠵᡠ</span>
     </a>
     <a href="/posts">
         <span class="zh">常用语句</span>
