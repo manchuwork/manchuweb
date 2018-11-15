@@ -91,7 +91,7 @@ Route::resource("olbooks",'\App\Http\Controllers\OlBookController');
 
 Route::resource("olcatalogs",'\App\Http\Controllers\OlCatalogController');
 
-Route::resource("olcontent",'\App\Http\Controllers\OlContentController');
+Route::resource("olcontents",'\App\Http\Controllers\OlContentController');
 
 
 // 音乐

@@ -2,40 +2,24 @@
 @section("title")ᠮᠠᠨᠵᡠ manchu图书查看@endsection
 @section("content")
     <link rel="stylesheet" href="/css/bookinfo">
-    @include("book.nav")
-    <h1 class="zh">{{$book->title}}</h1>
-    <h1 class="mnc">{{$book->title_mnc}}</h1>
-    <div class="subject clearfix">
-        @if(!empty($book->pic))
-            <img src="{{ asset('/pic/'.$book->pic) }}" style="width: 135px" alt="{{$book->title}}" rel="v:photo"
-                 style="width: 135px">
-        @else
-            <img src="img/s28950702.jpg"  title="点击看大图" alt="{{$book->title}}" rel="v:photo"
-                 style="width: 135px"/>
-        @endif
+    @include("olcatalog.nav")
 
-        <div id="mainpic" class=""><a class="nbg" href="{{$book->pic}}"
-                                      title="{{$book->title}}">
-            </a></div>
-        <div id="info" class="zh"><span><span class="pl"> 作者</span>: {{$book->author}}</span><br><span
-                    class="pl">出版社:</span> {{$book->publisher}}<br><span class="pl">副标题:</span> {{$book->subtitle}}<br><span class="pl">出版年:</span>{{$book->publish_year}}<br><span
-                    class="pl">页数:</span> <span class="en">{{$book->page_count}}</span><br><span class="pl">定价:</span><span class="en">{{$book->price}}</span> 元<br><span class="pl">装帧:</span> {{$book->binding}}<br><span
-                    class="pl">ISBN:</span> {{$book->isbn}}<br></div>
-    </div>
-    <div class="related_info zh">
-        <h2><span class="">内容简介</span></h2>
-        {{$book->brief_intro}}
-        <h2><span class="">作者</span></h2>
-        {{$book->about_the_author}}
-        <h2><span class="">目录</span></h2>
-        {{$book->catalogue}}
-    </div>
-    @can('update', $book)
+    <div><span class="zh">「标题」</span>*</div>
+    <div id="entry" class="zh" placeholder="请输入标题">{{$olcatalog->entry}}</div>
+    <div><span class="zh">「满语标题」</span></div>
+    <div id="entry_mnc" class="mnc" placeholder="请输入满语标题">{{$olcatalog->entry_mnc}}</div>
+    <div><span class="zh">「转写」</span></div>
+    <div id="entry_trans" class="en" placeholder="请输入转写">{{$olcatalog->entry_trans}}</div>
+    <div><span class="zh">「文章添加」</span></div>
+    <a class="zh"  href="/olcontents/create?olcatalog_id={{$olcatalog->id}}">
+        编辑文章
+    </a>
+    @can('update', $olcatalog)
         @if($isShow)
-            <a class="zh"  href="/books/{{$book->id}}/edit">
+            <a class="zh"  href="/olcatalogs/{{$olcatalog->id}}/edit">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
             </a>
-            <a class="zh"  href="/books/{{$book->id}}/delete">
+            <a class="zh"  href="/olcatalogs/{{$olcatalog->id}}/delete">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true">删除</span>
             </a>
         @endif

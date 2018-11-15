@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\OlContent;
 use Illuminate\Http\Request;
+use App\OlCatalog;
+use Illuminate\Support\Facades\Auth;
 
 class OlContentController extends Controller
 {
     //
     public function index(){
 
-        $olContent = OlContent::orderBy('created_at','desc')
+        $olcontents = OlContent::orderBy('created_at','desc')
             ->paginate(6);
 
 
-        return view('olcontent/index',compact('olContent'));
+        return view('olcontent/index',compact('olcontents'));
     }
 
-    public function show(OlContent $book){
+    public function show(OlContent $olcontent){
         $isShow = true;
 
-        return view('olcontent/show',compact('book','isShow'));
+        return view('olcontent/show',compact('olcontent','isShow'));
     }
 
     public function create(){
@@ -28,8 +31,10 @@ class OlContentController extends Controller
         }
         $this->middleware('auth');
 
+        $olcatalog_id = request('olcatalog_id');
+        $olcatalog = OlCatalog::find($olcatalog_id);
         $olcontent = [];
-        return view('olcontent/create',compact('olcontent'));
+        return view('olcontent/create',compact('olcontent','olcatalog','olcatalog_id'));
     }
 
     public function store(){
@@ -39,46 +44,20 @@ class OlContentController extends Controller
         $this->middleware('auth');
 
         $this->validate(request(),[
-            'title' => 'required|string|max:125|min:1',
-//            'title_mnc' => 'string|max:512',
-//            'author' => 'required|string|max:125',
-//            'translator' => 'string|max:512',
-//            'publisher' => 'string|max:125',
-//            'page_count' => 'integer',
-//            'price' => 'integer',
-//            'binding' => 'string',
-//            'isbn' => 'string',
-//            'user_id' => 'integer',
-//            'brief_intro' => 'string',
-//            'about_the_author' => 'string',
-//            'catalogue' => 'string',
+            'content' => 'required|string|max:125|min:1',
         ]);
 
         $user_id = \Auth::id();
 
 
-        $pic = ImageTool::saveImgFromRequestByDateDir('pic','olcontentpic',135,206);
-
-        if(empty($pic)){
-            $pic = '';
-        }
-        $params = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
-
-        if(!isset($params['page_count'])){
-            $params['page_count']= 0;
-        }
-
-        if(!isset($params['price'])){
-            $params['price']=0;
-        }
+        $params = array_merge(request(['ol_book_id','ol_catalog_id','content']),compact('user_id'));
 
         $this->_unsetNull($params);
         //dd ($params);
 
         OlContent::create($params);
 
-        return redirect('/olcontents');
+        return redirect('/olcontents/');
     }
 
     public function _unsetNull(& $arr){
@@ -114,45 +93,14 @@ class OlContentController extends Controller
         }
         $this->middleware('auth');
         $this->validate(request(),[
-            'title' => 'required|string|max:125|min:1',
-//            'title_mnc' => 'string|max:512',
-//            'author' => 'required|string|max:125',
-//            'translator' => 'string|max:512',
-//            'publisher' => 'string|max:125',
-//            'page_count' => 'integer',
-//            'price' => 'integer',
-//            'binding' => 'string',
-//            'isbn' => 'string',
-//            'pic' => 'string|max:512',
-//            'user_id' => 'integer',
-//            'brief_intro' => 'string',
-//            'about_the_author' => 'string',
-//            'catalogue' => 'string',
+            'content' => 'required|string|max:125|min:1',
         ]);
 
         $this->authorize('update', $olcontent);
 
-
-        $pic = ImageTool::saveImgFromRequestByDateDir('pic','olcontentpic',135,206);
-
-        $olcontentNew = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id'));
-
-        $oldPic = null;
-
-        if(isset($olcontent['pic'])){
-            $oldPic = $olcontent->pic;
-        }
-        if(isset($pic)){
-            $olcontent->pic = $pic;
-        }
         $id = $olcontent->id;
         $olcontent->update();
 
-        if(isset($pic) && !empty($oldPic) && $oldPic != ''){
-            ImageTool::delete($oldPic);
-
-        }
         return redirect('/olcontents/'. $id);
     }
 

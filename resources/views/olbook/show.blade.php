@@ -25,6 +25,10 @@
         {{$olbook->brief_intro}}
     </div>
     <h2><span class="">内容简介</span></h2>
+    <a class="zh"  href="/olcatalogs?olbook_id={{$olbook->id}}">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true">查看目录</span>
+    </a>
+
     @can('update', $olbook)
         @if($isShow)
             <a class="zh"  href="/olcatalogs/create?olbook_id={{$olbook->id}}">

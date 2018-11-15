@@ -14,7 +14,12 @@ var lyricMncHost = '';////manchu.work'
 // 在歌词区显示提示语
 function lyricTip(str) {
     lyricArea.html("<li class='lyric-tip'>"+str+"</li>");     // 显示内容
+
+}
+
+function lyricMncTip(str) {
     lyricAreaMnc.html("<li class='lyric-tip'>"+str+"</li>");     // 显示内容
+
 }
 
 // 歌曲加载完后的回调函数
@@ -26,15 +31,16 @@ function lyricCallback(url,music_title, author) {
         type:"get",
         success:function(data){
 
+            console.log("sdfjsdfkj lyricCallback search")
             if(data == '暂无歌词') {
-                lyricTip(DEFAULT_TIP_TEXT);
+                lyricMncTip(DEFAULT_TIP_TEXT);
                 return false;
             }
 
             lyricTextMnc = parseLyric(data);    // 解析获取到的歌词
 
             if(lyricTextMnc === '') {
-                lyricTip(DEFAULT_TIP_TEXT);
+                lyricMncTip(DEFAULT_TIP_TEXT);
                 return false;
             }
 
@@ -48,7 +54,7 @@ function lyricCallback(url,music_title, author) {
             for(var k in lyricTextMnc){
                 var txt = lyricTextMnc[k];
                 if(txt.indexOf('纯音乐') != -1){
-                    lyricTip(DEFAULT_TIP_TEXT);
+                    lyricMncTip(DEFAULT_TIP_TEXT);
                     return false;
                 }
                 if(!txt) txt = "&nbsp;";
@@ -58,6 +64,8 @@ function lyricCallback(url,music_title, author) {
             }
         }
     });
+
+
     $.ajax({  //异步请求获取歌词
         url:url,
         type:"post",

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\OlBook;
 use App\OlCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,18 +13,25 @@ class OlCatalogController extends Controller
     //
     //
     public function index(){
+        $ol_book_id = \request('olbook_id');
 
         $olcatalogs = OlCatalog::orderBy('created_at','desc')
+            ->where('ol_book_id','=', $ol_book_id)
             ->paginate(6);
 
+        $isShow = true;
+        $olbook_id = \request('olbook_id');
+        $olbook = OlBook::find($olbook_id);
 
-        return view('olcatalog/index',compact('olcatalogs'));
+
+        return view('olcatalog/index',compact('olcatalogs', 'olbook_id','olbook','isShow'));
     }
 
-    public function show(OlCatalog $book){
+    public function show(OlCatalog $olcatalog){
         $isShow = true;
 
-        return view('olcatalog/show',compact('book','isShow'));
+
+        return view('olcatalog/show',compact('olcatalog','isShow'));
     }
 
     public function create(){
@@ -34,11 +42,11 @@ class OlCatalogController extends Controller
 
         $olcatalog = [];
 
-        $olbookid= \request("olbook_id");
+        $olbook_id= \request("olbook_id");
 
 
 
-        return view('olcatalog/create',compact('olcatalog','olbookid'));
+        return view('olcatalog/create',compact('olcatalog','olbook_id'));
     }
 
     public function store(){
@@ -53,13 +61,15 @@ class OlCatalogController extends Controller
 
         $user_id = \Auth::id();
 
-        $params = array_merge(request(['entry','entry_mnc','entry_trans']),compact('user_id'));
+        $params = array_merge(request(['entry','entry_mnc','entry_trans','ol_book_id']),compact('user_id'));
 
         $this->_unsetNull($params);
 
         OlCatalog::create($params);
 
-        return redirect('/olcatalogs');
+        $olbook_id = \request('ol_book_id');
+
+        return redirect('/olcatalogs?olbook_id='. $olbook_id);
     }
 
     public function _unsetNull(& $arr){
