@@ -1,0 +1,23 @@
+.column {
+    height: auto;
+    width: auto;
+    float: top;
+    border: 2px solid black;
+    background-color: green;
+    margin-right: 5px;
+    text-align: center;
+    cursor: move;
+}
+
+.column header {
+    color: black;
+    text-shadow: #000 0 1px;
+    box-shadow: indianred; /*5px;*/
+    padding: 5px;
+    background: red;
+    border-bottom: 1px solid black;
+}
+
+.column.over {
+    border: 3px dashed #000;
+}

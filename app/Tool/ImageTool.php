@@ -25,6 +25,42 @@ class ImageTool
      *
      * @return \Mockery\Expectation
      */
+    public static function saveImgTmpFromRequestByDateDir($imgFieldName, $subDir, $resizeWidth = 320, $resizeHeight= 240)
+    {
+
+        $dictpic = request()->file($imgFieldName);
+
+
+
+        if(empty($dictpic)){
+
+            return null;
+        }
+
+
+        $picDirPath = 'tmp'. DIRECTORY_SEPARATOR .date('Ymd') . DIRECTORY_SEPARATOR . $subDir;
+
+        //dd("public_path:". public_path("a"));
+        $storageDirPath = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . $picDirPath);
+
+        File::isDirectory($storageDirPath) or File::makeDirectory($storageDirPath, 0777, true, true);
+
+        $picPath = $storageDirPath . DIRECTORY_SEPARATOR . ImageTool::extend_1($dictpic->hashName());
+
+        $img = Image::make($dictpic->getPathname());
+
+        //$img = Image::make($picPath);
+
+        $img->resize($resizeWidth, null)->resize(null, $resizeHeight)->save($picPath);
+
+        return $picDirPath  . DIRECTORY_SEPARATOR . ImageTool::extend_1($dictpic->hashName());
+    }
+
+    /**
+     * Initiate a mock expectation on the facade.
+     *
+     * @return \Mockery\Expectation
+     */
     public static function saveImgFromRequestByDateDir($imgFieldName, $subDir, $resizeWidth = 320, $resizeHeight= 240)
     {
 

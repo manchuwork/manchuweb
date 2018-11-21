@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/bookinfo">
     @include("olcontent.nav")
     <div><span class="zh">「内容」</span>*</div>
-    <div id="content" tabindex="0"  contentEditable="true" class="input zh" placeholder="请输入内容">{{$olcontent->content}}</div>
+    <div id="content" tabindex="0"  contentEditable="true" class="input zh" placeholder="请输入内容">{!! $olcontent->content !!}</div>
 
     @can('update', $olcontent)
         @if($isShow)

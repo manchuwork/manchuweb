@@ -2,7 +2,7 @@ $(function () {
     function getText($Node) {
         $Node.children("style").remove();
         description = $Node.html();
-        console.log("$Node.description remove style:" + description);
+        // console.log("$Node.description remove style:" + description);
         description = description.replace(/(\n)/g, "");
         description = description.replace(/(\t)/g, "");
         description = description.replace(/(\r)/g, "");
@@ -11,17 +11,33 @@ $(function () {
         return description.trim();
     }
 
-    $("div[contentEditable]").each(function () {
+    $("[contentEditable]").each(function () {
         $(this).blur(function () {
             var text = getText($(this));
             $(this).html(text);
+            console.log("haha");
         });
     });
     $("#btnCommit").click(function () {
-        $("div[contentEditable]").each(function () {
+
+        $("[contentEditable]").each(function () {
             var id = $(this).attr('id');
-            $("#" + id + "_hidden").val(getText($(this)));
+            if(id){
+                $("#" + id + "_hidden").val(getText($(this)));
+            }
+
+            $(this).removeAttr("contentEditable");
+            $(this).removeClass("input");
+            $(this).removeClass("column");
+            $(this).removeAttr("placeholder");
         });
+
+        var content = $("#drag_content");
+
+        if(content){
+            $("#content_hidden").val(content.html());
+            console.log("drag_content:"+$("#content_hidden").val());
+        }
         $("#form").submit();
     });
     /*在input file内容改变的时候触发事件*/

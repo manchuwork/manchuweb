@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\OlBook;
 use App\OlCatalog;
+use App\OlContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,8 +31,10 @@ class OlCatalogController extends Controller
     public function show(OlCatalog $olcatalog){
         $isShow = true;
 
+        $olcontents = OlContent::orderBy('created_at','desc')->where('ol_catalog_id', '=',$olcatalog->id)
+            ->paginate(6);
 
-        return view('olcatalog/show',compact('olcatalog','isShow'));
+        return view('olcatalog/show',compact('olcatalog','isShow','olcontents'));
     }
 
     public function create(){

@@ -32,7 +32,9 @@ class OlContentController extends Controller
         $this->middleware('auth');
 
         $olcatalog_id = request('olcatalog_id');
+
         $olcatalog = OlCatalog::find($olcatalog_id);
+
         $olcontent = [];
         return view('olcontent/create',compact('olcontent','olcatalog','olcatalog_id'));
     }
@@ -44,7 +46,7 @@ class OlContentController extends Controller
         $this->middleware('auth');
 
         $this->validate(request(),[
-            'content' => 'required|string|max:125|min:1',
+            'content' => 'required|string|max:65535|min:1',
         ]);
 
         $user_id = \Auth::id();
@@ -55,9 +57,9 @@ class OlContentController extends Controller
         $this->_unsetNull($params);
         //dd ($params);
 
-        OlContent::create($params);
+        $olContent = OlContent::create($params);
 
-        return redirect('/olcontents/');
+        return redirect('/olcontents/'.$olContent-> id);
     }
 
     public function _unsetNull(& $arr){
@@ -93,12 +95,13 @@ class OlContentController extends Controller
         }
         $this->middleware('auth');
         $this->validate(request(),[
-            'content' => 'required|string|max:125|min:1',
+            'content' => 'required|string|max:65535|min:1',
         ]);
 
         $this->authorize('update', $olcontent);
 
         $id = $olcontent->id;
+        $olcontent->content = \request('content');
         $olcontent->update();
 
         return redirect('/olcontents/'. $id);

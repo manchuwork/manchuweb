@@ -14,7 +14,7 @@
                         <div class="cover shadow-cover"><a href="/olcontents/{{$olcontent->id}}">
                                 id
                             </a>
-                            <div>{{$olcontent->content}}</div>
+                            <div>{!! $olcontent->content !!}</div>
                         </div>
                     </li>
                 @endforeach
