@@ -66,7 +66,7 @@ Route::get('/posts/{post}/unzan','\App\Http\Controllers\PostController@unzan');
 
 // 字典查询页面
 Route::get('/dicts/search', '\App\Http\Controllers\DictController@search');
-Route::post('/dicts', '\App\Http\Controllers\DictController@query');
+//Route::post('/dicts', '\App\Http\Controllers\DictController@query');
 
 Route::get('/dicts', '\App\Http\Controllers\DictController@index');
 // 创建文章

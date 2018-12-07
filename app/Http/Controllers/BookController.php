@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tool\FileTool;
 use App\Tool\ImageTool;
 
 use \App\Book;
@@ -67,8 +68,11 @@ class BookController extends Controller
         if(empty($pic)){
             $pic = '';
         }
+
+        $file = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
+
         $params = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
+            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'),$file);
 
         if(!isset($params['page_count'])){
             $params['page_count']= 0;
@@ -140,22 +144,50 @@ class BookController extends Controller
 
         $pic = ImageTool::saveImgFromRequestByDateDir('pic','bookpic',135,206);
 
-        $bookNew = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id'));
+        $file = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
+
+
 
         $oldPic = null;
 
         if(isset($book['pic'])){
             $oldPic = $book->pic;
         }
+        /*
         if(isset($pic)){
             $book->pic = $pic;
         }
+        */
+
+        $oldFile = null;
+        if(isset($book['file'])){
+            $oldFile = $book->file;
+        }
+
+        $bookNew = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
+            'binding','isbn','brief_intro','about_the_author','catalogue']),compact('user_id','pic'), $file);
+
+
+        $bookNewWithFiler = array_filter($bookNew);
+
+
+
+        foreach($bookNewWithFiler as $key => $value){
+            $book->{$key} = $value;
+        }
+
+        //var_dump($book);
+        //dd($bookNewWithFiler);
         $id = $book->id;
         $book->update();
 
         if(isset($pic) && !empty($oldPic) && $oldPic != ''){
             ImageTool::delete($oldPic);
+
+        }
+
+        if(isset($file) && isset($file['file']) && !empty($oldFile) && $oldFile != ''){
+            FileTool::delete($oldFile);
 
         }
         return redirect('/books/'. $id);

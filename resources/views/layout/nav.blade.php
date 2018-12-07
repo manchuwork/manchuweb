@@ -1,24 +1,25 @@
-<div class="content-wrap">
-    <a href="/home"><img src="/manchu_crest_50.png" alt="满族空间,www.manchu.work ,The manchu family crest"/>
-        <span class="zh">首页</span><span class="mnc">ᠮᠠᠨᠵᡠ</span>
+<div class="content-wrap box_nav">
+    <a href="/home"><img src="/manchu_crest_50.png" alt="满族空间,www.manchu.work ,The manchu family crest"/></a>
+    <a href="/home">
+        <span class="zh" style="font-size: small">首页</span>
     </a>
     <a href="/posts">
-        <span class="zh">常用语句</span>
+        <span class="zh" style="font-size: small">语句</span>
     </a>
     <a href="/dicts">
-        <span class="zh">满语字典</span>
+        <span class="zh" style="font-size: small">字典</span>
     </a>
     <a href="/books">
-        <span class="zh">图书列表</span></span>
+        <span class="zh" style="font-size: small">图书</span></span>
     </a>
     <a href="/lyrics">
-        <span class="zh">满语歌词LRC</span></span>
+        <span class="zh" style="font-size: small">歌词</span></span>
     </a>
     <a href="/play" target="_blank">
-        <span class="zh">音乐播放器</span></span>
+        <span class="zh" style="font-size: small">音乐</span></span>
     </a>
     <a href="/ime_manchu" target="_blank">
-        <span class="zh">满语在线输入法</span></span>
+        <span class="zh" style="font-size: small">输入法</span></span>
     </a>
 
 </div>

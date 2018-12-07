@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>满族空间--在线输入法</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/fonts/font-manchu">
     <style>
         /*** Shortcodes Ultimate - box elements ***/
 
@@ -559,6 +560,22 @@
 
         input, textarea, select, button, meter, progress {
             -webkit-writing-mode: horizontal-tb !important;
+        }
+
+        .iui {
+            font-family: 'Manchu Bold';
+            font-size: 1em;
+            background-color: #f2f2f2;
+            writing-mode: vertical-lr;
+            -webkit-writing-mode: vertical-lr;
+            -moz-writing-mode: vertical-lr;
+            -ms-writing-mode: tb-lr;
+            display: inline-block;
+            word-wrap: break-word;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+            -webkit-text-orientation: sideways-right;
+            text-orientation: sideways-right;
         }
     </style>
     <style>
@@ -1575,7 +1592,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 </head>
 <body class="container">
 <div class="su-tabs su-tabs-style-default" data-active="1">
-    <h1>满族空间--在线输入法</h1>
+   <h1> <a href="/home">满族空间--在线输入法</a></h1>
     <div class="su-tabs-nav" id="tab_nav">
         <span class="" data-url="tab1" data-target="blank">标准模式（竖排从左到右　↓→↓）</span>
         <span class="su-tabs-current" data-url="tab2" data-target="blank">兼容模式（竖排从右到左　↓←↓）</span>

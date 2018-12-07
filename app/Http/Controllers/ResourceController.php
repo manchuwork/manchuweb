@@ -77,6 +77,8 @@ class ResourceController extends Controller
         exit;
     }
 
+
+
     public function fonts_font_manchu_css(){
         $file = 'font-manchu';
         $ext = ".css";
@@ -141,6 +143,50 @@ class ResourceController extends Controller
         $dir =  $this->resourceHassets().'img'.DIRECTORY_SEPARATOR;
 
         return $this-> resCurrentDirFile($dir, $file, $ext, $contentType);
+    }
+
+    public function file($file){
+
+        //获取当前的url
+        $path = request()->path();
+        $needle = "file";
+
+        $contentType = 'application/octet-stream';
+        $pos = strrpos($path,"/");
+        if($pos){
+          $p = substr($path, $pos+1);
+
+          $file_decode = base64_decode($p);
+
+            $str_split = explode('|', $file_decode);
+
+            if(sizeof($str_split) == 3){
+                $extension = $str_split[1];
+                $mimeType = $str_split[2];
+
+                switch ($mimeType){
+                    case 'application/octet-stream':{
+                        $contentType = 'application/octet-stream';
+                        break;
+                    }
+
+                    case 'plain/text':{
+                        $contentType = 'application/octet-stream';
+                        break;
+                    }
+                    case 'application/pdf':{
+                        $contentType = 'application/pdf';
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        $realpath = substr_replace($path,"",strpos($path,$needle),strlen($needle));
+        $dir = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$realpath)  ;
+
+        return $this->res(file_get_contents($dir), $contentType);
     }
 
     private function resCurrentDirFile($dir, $file, $ext, $contentType){

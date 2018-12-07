@@ -18,6 +18,9 @@ Route::get('/img/{file}','\App\Http\Controllers\ResourceController@img');
 
 Route::get('/pic/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?}/{nine?}','\App\Http\Controllers\ResourceController@pic');
 
+Route::get('/file/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?}/{nine?}','\App\Http\Controllers\ResourceController@file');
+
+
 Route::get('/text/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?}/{nine?}','\App\Http\Controllers\ResourceController@text');
 
 Route::get('/storage/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?}/{nine?}','\App\Http\Controllers\ResourceController@pic');

@@ -25,12 +25,17 @@ class FileTool
      *
      * @return \Mockery\Expectation
      */
-    public static function saveFileFromRequestByDateDir($imgFieldName, $subDir)
+    public static function saveFileFromRequestByDateDir01($imgFieldName, $subDir)
     {
 
-        $dictpic = request()->file($imgFieldName);
+        $file = request()->file($imgFieldName);
 
-        if(empty($dictpic)){
+        $extension = $file->getClientOriginalExtension();
+        $mimeType = $file->getMimeType();
+
+       // echo ($extension.",mimeType:".$mimeType);
+
+        if(empty($file)){
 
             return null;
         }
@@ -39,20 +44,57 @@ class FileTool
 
         File::isDirectory($storageDirPath) or File::makeDirectory($storageDirPath, 0777, true, true);
 
-        $picPath = $storageDirPath . DIRECTORY_SEPARATOR . FileTool::extend_1($dictpic->hashName());
+        $picPath = $storageDirPath . DIRECTORY_SEPARATOR . FileTool::extend_1($file->hashName(), $extension, $mimeType);
 
-        copy($dictpic->getPathname(), $picPath);
+        copy($file->getPathname(), $picPath);
 
-        return $picDirPath  . DIRECTORY_SEPARATOR . FileTool::extend_1($dictpic->hashName());
+        return ['file'=>$picDirPath  . DIRECTORY_SEPARATOR . FileTool::extend_1($file->hashName(), $extension, $mimeType)
+            ,
+            'file_ext'=>$extension,
+            'file_mimetype' => $mimeType];
     }
 
-    private static function extend_1($file_name){
+    /**
+     * Initiate a mock expectation on the facade.
+     *
+     * @return \Mockery\Expectation
+     */
+    public static function saveFileFromRequestByDateDir($imgFieldName, $subDir)
+    {
+
+        $file = request()->file($imgFieldName);
+
+        $extension = $file->getClientOriginalExtension();
+        $mimeType = $file->getMimeType();
+
+        //echo ($extension.",mimeType:".$mimeType);
+        if(empty($file)){
+
+            return null;
+        }
+        $picDirPath = date('Ymd') . DIRECTORY_SEPARATOR . $subDir;
+        $storageDirPath = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . $picDirPath);
+
+        File::isDirectory($storageDirPath) or File::makeDirectory($storageDirPath, 0777, true, true);
+
+        $picPath = $storageDirPath . DIRECTORY_SEPARATOR . FileTool::extend_1($file->hashName());
+
+        copy($file->getPathname(), $picPath);
+
+        return $picDirPath  . DIRECTORY_SEPARATOR . FileTool::extend_1($file->hashName());
+    }
+
+    private static function extend_1($file_name,  $extension = '', $mimeType = ''){
         $retval="";
         $pt=strrpos($file_name, ".");
 
+
+
         if ($pt) $retval=substr($file_name, 0, $pt);
 
-        return ($retval);
+
+
+        return str_replace('=','',base64_encode($retval.'|'. $extension.'|' .$mimeType));
     }
 
     public static function delete($file){

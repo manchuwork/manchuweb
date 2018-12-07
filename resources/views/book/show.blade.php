@@ -30,6 +30,12 @@
         <h2><span class="">目录</span></h2>
         {{$book->catalogue}}
     </div>
+    @if(!empty($book->file))
+        <a class="zh"  href="{{ asset('/file/'.$book->file) }}" target="_blank">下载</a>
+        <a class="zh" href="http://localhost:8000/reader/index.html#{{$book->file}}" target="_blank">阅读</a>
+    @else
+
+    @endif
     @can('update', $book)
         @if($isShow)
             <a class="zh"  href="/books/{{$book->id}}/edit">

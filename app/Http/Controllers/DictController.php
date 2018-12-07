@@ -16,8 +16,8 @@ class DictController extends Controller
     //
     public function search(\Psr\Log\LoggerInterface $log){
 
-
-        return view('dict/search');
+        return $this->query($log);
+        //return view('dict/search');
     }
 
     public function queryWord(){
@@ -36,13 +36,13 @@ class DictController extends Controller
 
         if(preg_match('/[\x{4e00}-\x{9fa5}]/u', $word)>0){
             // 含有中文
-            $dicts = Dict::where('chinese', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(5);
+            $dicts = Dict::where('chinese', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
         }else if(preg_match('/[\x{1800}-\x{18AF}]/u', $word)>0){
             // 含有满文
-            $dicts = Dict::where('manchu', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(5);
+            $dicts = Dict::where('manchu', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
         }else if(!empty($word)){
             // 英文处理
-            $dicts = Dict::where('trans', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(5);
+            $dicts = Dict::where('trans', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
 
         }
 

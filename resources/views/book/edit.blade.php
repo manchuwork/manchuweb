@@ -46,7 +46,10 @@
                 <p class="zh">预览图片</p>
                 <img id="imgshow" width="135" height="206">
             </span>
-            <input id="filed" name="pic" type="file" value="">
+            <div><span class="zh">选择图片</span></div>
+            <input id="filed" name="pic" type="file" value="" title="选择图片">
+            <div><span class="zh">选择文件</span><span class="en"> .pdf</span></div>
+            <input name="file" type="file" value="" title="选择图片">
         </form>
         @include('layout.error')
         <button id="btnCommit" class="box box1">提交数据</button>

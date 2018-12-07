@@ -28,6 +28,9 @@ class CreateBooksTable extends Migration
             $table->string('binding',15)->default('');
             $table->string('isbn',15)->default('');
             $table->string('pic',512)->default('');
+            $table->string('file',512)->default('');
+            $table->string('file_ext',16)->default('');
+            $table->string('file_mimetype',50)->default('');
             $table->integer('user_id')->default(0);
             // 简介
             $table->text('brief_intro');
