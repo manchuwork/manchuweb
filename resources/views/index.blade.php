@@ -10,7 +10,7 @@
          placeholder="请输入满语、汉语或转写">{{ $word or '' }}</div>
     <div class="box"> </div>
     <button id="btnCommit" class="box box1">提交数据</button>
-    <form id="form" action="/dicts" method="POST">
+    <form id="form" action="/dicts/search" method="GET">
         {{csrf_field()}}
         <input id="word_hidden" name="word" type="hidden" value="">
     </form>

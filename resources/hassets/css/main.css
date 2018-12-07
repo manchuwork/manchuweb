@@ -222,7 +222,7 @@ input.input {
     position: sticky;
     height: 100%;
 
-    text-align: center  ;
+    text-align: start  ;
     color: #fff;
     margin-bottom: 50px;
 }

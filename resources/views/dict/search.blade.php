@@ -37,6 +37,9 @@
         </div>
     @endforeach
     {{$dicts->appends('word',$word)->links()}}
+    @elseif(empty($word))
+        <div class="mnc"></div>
+
     @elseif(isset($word))
         <div class="mnc"><span class="zh" >没有查找到</span> "{{ $word}}"</div>
 
