@@ -22,46 +22,34 @@ function lyricMncTip(str) {
 
 }
 
+var lyric_loaded = false;
 // 歌曲加载完后的回调函数
 function lyricCallback(url,music_title, author) {
 
+    lyric_loaded = false;
 
     $.ajax({  //异步请求获取歌词
         url:lyricMncHost +'/lyric/search?title='+ music_title+'&author=' + author,
         type:"get",
         success:function(data){
 
-            console.log("sdfjsdfkj lyricCallback search")
-            if(data == '暂无歌词') {
-                lyricMncTip(DEFAULT_TIP_TEXT);
-                return false;
+            var data;
+            try{
+                data = JSON.parse(data); //由JSON字符串转换为JSON对象
+
+            }catch (e) {
+                data = {};
+                data.lyric_mnc = '';
+                data.lyric = '';
             }
 
-            lyricTextMnc = parseLyric(data);    // 解析获取到的歌词
+            loadLyricRenderMnc(data.lyric_mnc);
 
-            if(lyricTextMnc === '') {
-                lyricMncTip(DEFAULT_TIP_TEXT);
-                return false;
+            if(data.lyric){
+                loadLyricRender(data.lyric, true);
             }
 
-            lyricAreaMnc.html('');   // 清空歌词区域的内容
-            lyricAreaMnc.scrollLeft(0);    // 滚动到顶部
 
-            lastLyricMnc = -1;
-
-            // 显示全部歌词
-            var i = 0;
-            for(var k in lyricTextMnc){
-                var txt = lyricTextMnc[k];
-                if(txt.indexOf('纯音乐') != -1){
-                    lyricMncTip(DEFAULT_TIP_TEXT);
-                    return false;
-                }
-                if(!txt) txt = "&nbsp;";
-                var li = $("<li data-no='"+i+"' class='lrc-item'>"+txt+"</li>");
-                lyricAreaMnc.append(li);
-                i++;
-            }
         }
     });
 
@@ -71,45 +59,114 @@ function lyricCallback(url,music_title, author) {
         type:"post",
         success:function(data){
 
-            if(data == '暂无歌词') {
-                lyricTip(DEFAULT_TIP_TEXT);
-                return false;
-            }
-
-            lyricText = parseLyric(data);    // 解析获取到的歌词
-
-            if(lyricText === '') {
-                lyricTip(DEFAULT_TIP_TEXT);
-                return false;
-            }
-
-            lyricArea.html('');     // 清空歌词区域的内容
-
-            lyricArea.scrollTop(0);    // 滚动到顶部
-
-            // lyricAreaMnc.html('');   // 清空歌词区域的内容
-            // lyricAreaMnc.scrollLeft(0);    // 滚动到顶部
-
-            lastLyric = -1;
-
-            // 显示全部歌词
-            var i = 0;
-            for(var k in lyricText){
-                var txt = lyricText[k];
-                if(txt.indexOf('纯音乐') != -1 || txt.indexOf('暂无歌词') != -1){
-                    lyricTip(DEFAULT_TIP_TEXT);
-                    return false;
-                }
-                if(!txt) txt = "&nbsp;";
-                var li = $("<li data-no='"+i+"' class='lrc-item'>"+txt+"</li>");
-                lyricArea.append(li);
-
-                // var liMnc = $("<li data-no='"+i+"' class='lrc-item'>"+txt+"</li>");
-                // lyricAreaMnc.append(liMnc);
-                i++;
-            }
+            loadLyricRender(data);
         }
     });
+}
+function loadLyricRenderMnc(data) {
+    console.log('mnc loadLyricRenderMnc===>'+data);
+
+    if(!data || data == '' || data == '暂无歌词'){
+        console.log('mnc loadLyricRenderMnc null===>'+data);
+
+        lyricMncTip(DEFAULT_TIP_TEXT);
+        return false;
+    }
+
+
+    lyricTextMnc = parseLyric(data);    // 解析获取到的歌词
+
+    if(lyricTextMnc === '') {
+        lyricMncTip(DEFAULT_TIP_TEXT);
+        return false;
+    }
+
+    lyricAreaMnc.html('');   // 清空歌词区域的内容
+    lyricAreaMnc.scrollLeft(0);    // 滚动到顶部
+
+    lastLyricMnc = -1;
+
+    // 显示全部歌词
+    var i = 0;
+    for(var k in lyricTextMnc){
+        var txt = lyricTextMnc[k];
+        if(txt.indexOf('纯音乐') != -1){
+            lyricMncTip(DEFAULT_TIP_TEXT);
+            return false;
+        }
+        if(!txt) txt = "&nbsp;";
+
+        var mncCls = '';
+        if(checkIsMnc(txt)){
+            mncCls = ' mnc';
+        }
+        if(checkIsChinese(txt)){
+            mncCls = ' zh';
+        }
+
+        var li = $("<li data-no='"+i+"' class='lrc-item"+mncCls+"'>"+txt+"</li>");
+        lyricAreaMnc.append(li);
+        i++;
+    }
+}
+
+function checkIsChinese(val){
+    var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+    //if(reg.test(val)){alert("包含汉字！"); }
+    return reg.test(val);
+}
+
+function checkIsMnc(val){
+    var reg = new RegExp("[\\u1800-\\u18AF]+","g");
+    //if(reg.test(val)){alert("包含汉字！"); }
+    return reg.test(val);
+}
+function loadLyricRender(data, manchuwork_lyric= false) {
+
+    if(lyric_loaded){
+        return;
+    }
+    if(data == '暂无歌词') {
+        lyricTip(DEFAULT_TIP_TEXT);
+        return false;
+    }
+
+    lyricText = parseLyric(data);    // 解析获取到的歌词
+
+    if(lyricText === '') {
+        lyricTip(DEFAULT_TIP_TEXT);
+        return false;
+    }
+
+    if(manchuwork_lyric){
+        lyric_loaded = true;
+    }
+
+    lyricArea.html('');     // 清空歌词区域的内容
+
+    lyricArea.scrollTop(0);    // 滚动到顶部
+
+    // lyricAreaMnc.html('');   // 清空歌词区域的内容
+    // lyricAreaMnc.scrollLeft(0);    // 滚动到顶部
+
+    lastLyric = -1;
+
+    // 显示全部歌词
+    var i = 0;
+    for(var k in lyricText){
+        var txt = lyricText[k];
+        if(txt.indexOf('纯音乐') != -1 || txt.indexOf('暂无歌词') != -1){
+            lyricTip(DEFAULT_TIP_TEXT);
+            return false;
+        }
+        if(!txt) txt = "&nbsp;";
+        var li = $("<li data-no='"+i+"' class='lrc-item'>"+txt+"</li>");
+        lyricArea.append(li);
+
+        // var liMnc = $("<li data-no='"+i+"' class='lrc-item'>"+txt+"</li>");
+        // lyricAreaMnc.append(liMnc);
+        i++;
+    }
 }
 
 // 强制刷新当前时间点的歌词 秒为单位
@@ -182,7 +239,7 @@ function scrollLyricMnc(time) {
     $("#lyric_mnc .lrc-item[data-no='" + i + "']").addClass("lplaying");    // 加上正在播放样式
 
 
-    var scrollMnc = (lyricAreaMnc.children().width() * i) - ($(".lyric_mnc").width() / 2);
+    var scrollMnc = (lyricAreaMnc.children().width() * i) - ($("#lyric_mnc").width() / 2);
     lyricAreaMnc.stop().animate({scrollLeft: scrollMnc}, 1000);  // 平滑滚动到当前歌词位置(更改这个数值可以改变歌词滚动速度，单位：毫秒)
 
 }

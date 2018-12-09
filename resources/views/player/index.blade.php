@@ -9,6 +9,8 @@
     <meta name="renderer" content="webkit">
     <meta name="generator" content="KodCloud">
     <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="stylesheet" href="/fonts/font-manchu">
+
 
     <!-- 一些移动设备的全屏 -->
     <meta name="apple-mobile-web-app-capable" content="yes">

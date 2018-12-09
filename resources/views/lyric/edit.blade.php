@@ -18,8 +18,15 @@
             {{method_field("PUT")}}
             <input id="title_hidden" name="title" type="hidden" value="">
             <input id="author_hidden" name="author" type="hidden" value="">
-            <p class="zh">上传歌词文件</p>
+            <p class="zh">上传歌词转写、中文歌词</p>
             <input name="file" type="file" value="">
+            @if(isset($lyric->file))
+            <a class="zh" href="{{ asset('/text/'. $lyric->file) }}" target="_blank">歌词下载</a>@endif
+            <p class="zh">上传歌词满文歌词</p>
+            <input name="file_mnc" type="file"  value="">
+            @if(isset($lyric->file))
+                <a class="zh" href="{{ asset('/text/'. $lyric->file_mnc) }}" target="_blank">歌词下载</a>@endif
+
         </form>
         @include('layout.error')
         <button id="btnCommit" class="box box1">提交数据</button>

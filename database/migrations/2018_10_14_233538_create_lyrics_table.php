@@ -17,8 +17,8 @@ class CreateLyricsTable extends Migration
         Schema::create('lyrics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 125)->index();
-            $table->string('author', 512)->default('')->index();
-            $table->string('file',512)->default('');
+            $table->string('author', 125)->default('')->index();
+            $table->string('file',125)->default('');
             $table->integer('user_id')->default(0);
             $table->timestamps();
         });

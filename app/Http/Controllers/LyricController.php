@@ -15,15 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LyricController extends Controller
 {
-
-    private function headerCache(){
-        $timestamp = time();
-        $interval = 60 * 60 * 12; // 6 hours
-        header ("Last-Modified: " . gmdate ('r', $timestamp));
-        header ("Expires: " . gmdate ("r", ($timestamp + $interval)));
-        header ("Cache-Control: max-age=$interval");
-    }
-
     public function search(){
 
         $contentType= "text/plain";
@@ -61,21 +52,33 @@ class LyricController extends Controller
             //获取当前的url
             $path = $lyrics[0]->file;
 
+            $path_mnc = $lyrics[0]->file_mnc;
             $path = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$path)  ;
 
-            if(!file_exists($path)){
-                //报404错误
-                return response('');
+            $path_mnc = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$path_mnc)  ;
 
-            }
+            $lyric_zh_en = $this->loadFile($path);
+            $lyric_mnc = $this->loadFile($path_mnc);
 
-            return $this->res(file_get_contents($path), $contentType, "*");
+            return $this->res(['lyric'=>$lyric_zh_en, 'lyric_mnc'=> $lyric_mnc], $contentType, "*");
 
         }
 
         return response('');
 
     }
+
+    private function loadFile($path){
+        if(!file_exists($path)){
+            //报404错误
+            return '';
+
+        }
+
+        return file_get_contents($path);
+    }
+
+
 
 
     private function res($content, $contentType, $AccessControlAllowOrigin = null)
@@ -141,11 +144,11 @@ class LyricController extends Controller
 
         $file = FileTool::saveFileFromRequestByDateDir('file','lyric');
 
-        if(empty($file)){
-            $file = '';
+        $file_mnc = FileTool::saveFileFromRequestByDateDir('file_mnc','lyric');
+        if(empty($file_mnc)){
+            $file_mnc = '';
         }
-        $params = array_merge(request(['title','author']),compact('user_id','file'));
-
+        $params = array_merge(request(['title','author']),compact('user_id','file','file_mnc'));
 
         Lyric::create($params);
 
@@ -183,9 +186,21 @@ class LyricController extends Controller
         if(isset($lyric['file'])){
             $oldFile = $lyric->file;
         }
+        $oldFileMnc = null;
+        $file_mnc = FileTool::saveFileFromRequestByDateDir('file_mnc','lyric');
+        if(isset($lyric['file_mnc'])){
+            $oldFileMnc = $lyric->file_mnc;
+        }
+
         if(isset($file)){
             $lyric->file = $file;
         }
+
+        if(isset($file_mnc)){
+            $lyric->file_mnc = $file_mnc;
+        }
+
+
         $id = $lyric->id;
 
         if(isset($lyricNew['title'])){
@@ -200,6 +215,10 @@ class LyricController extends Controller
         if(isset($file) && !empty($oldFile) && $oldFile != ''){
             FileTool::delete($oldFile);
 
+        }
+
+        if(isset($file_mnc ) && !empty($oldFileMnc) && $oldFileMnc != '' ){
+            FileTool::delete($oldFileMnc);
         }
         return redirect('/lyrics/'. $id);
     }

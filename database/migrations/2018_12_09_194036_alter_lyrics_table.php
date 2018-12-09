@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterDictsTable extends Migration
+class AlterLyricsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,13 @@ class AlterDictsTable extends Migration
     {
         //
         //
-        //
-        Schema::table('dicts', function (Blueprint $table) {
-            //$table->string('file',512)->default('');
-//            $table->string('trans_zh',512)->default('')->change();
+        Schema::table('lyrics', function (Blueprint $table) {
+
+//            $table->string('title', 125)->index()->change();
+//            $table->string('author', 125)->default('')->index()->change();
+//            $table->string('file',125)->default('')->change();
+            $table->string('file_mnc',125)->default('');
+
         });
     }
 

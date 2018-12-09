@@ -64,8 +64,8 @@ class FileTool
 
         $file = request()->file($imgFieldName);
 
-        $extension = $file->getClientOriginalExtension();
-        $mimeType = $file->getMimeType();
+//        $extension = $file->getClientOriginalExtension();
+//        $mimeType = $file->getMimeType();
 
         //echo ($extension.",mimeType:".$mimeType);
         if(empty($file)){

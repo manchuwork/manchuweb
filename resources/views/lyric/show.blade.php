@@ -6,7 +6,12 @@
     <h1 class="zh">{{$lyric->title}}</h1>
     <div class="zh">{{$lyric->author}}</div>
 
-    <a class="zh" href="{{ asset('/text/'. $lyric->file) }}" target="_blank">歌词下载</a>
+    @if(isset($lyric->file))
+        <p class="zh">下载歌词中英文歌词</p>
+        <a class="zh" href="{{ asset('/text/'. $lyric->file) }}" target="_blank">歌词下载</a>@endif
+    @if(isset($lyric->file))
+        <p class="zh">下载歌词满文歌词</p>
+        <a class="zh" href="{{ asset('/text/'. $lyric->file_mnc) }}" target="_blank">歌词下载</a>@endif
     @can('update', $lyric)
         @if($isShow)
             <a class="zh"  href="/lyrics/{{$lyric->id}}/edit">

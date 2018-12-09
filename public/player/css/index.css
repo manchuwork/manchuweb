@@ -657,13 +657,13 @@ body {
 #lyric .lplaying {
     color: #31c27c;
     transition: .4s;
-    font-size:16px;
+    /*font-size:16px;*/
 }
 
 /* 歌词ul */
 #lyric_mnc {
     position: absolute;
-    width: 100%;
+    width: 50%;
     height: 100%;
     top: 0;
     left: 0;
@@ -683,6 +683,20 @@ body {
     color: #31c27c;
     transition: .4s;
     font-size:16px;
+}
+
+#lyric_mnc .mnc {
+    font-family: 'Manchu Bold';
+    font-size: 30px;
+    -webkit-text-orientation: sideways-right;
+    text-orientation: sideways-right;
+}
+
+#lyric_mnc .zh {
+    font-size: 16px;
+    font-family: 'arial,sans-serif';
+    -webkit-text-orientation: upright;
+    text-orientation: upright;
 }
 /* 歌词显示区显示的提示语(如加载中、无歌词等) */
 .lyric-tip {

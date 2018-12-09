@@ -15,8 +15,13 @@
             {{csrf_field()}}
             <input id="title_hidden" name="title" type="hidden" value="">
             <input id="author_hidden" name="author" type="hidden" value="">
-            <p class="zh">上传图片</p>
+            <p class="zh">上传歌词转写、中文歌词</p>
             <input name="file" type="file" value="">
+            <div>
+                <a href=""/>
+            </div>
+            <p class="zh">上传歌词满文歌词</p>
+            <input name="file_mnc" type="file"  value="">
         </form>
         @include('layout.error')
         <button id="btnCommit" class="box box1">提交数据</button>
