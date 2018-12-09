@@ -5,10 +5,11 @@
     <script src="/js/edit"></script>
 
     <div class="content-wrap">
-        <div><span class="zh">「满语」</span><span class="mnc">{!! $dict->manchu !!}</span></div>
+        <div><span class="zh">「满语」</span><span class="mnc">{{ $dict->manchu }}</span></div>
         {{--<div class="mnc-trans-blod">{{$dict->manchu }}</div>--}}
-        <div><span class="zh">「转写」</span> <span class="en">{!! $dict->trans !!}</span></div>
-        <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>
+        <div><span class="zh">「转写」</span><span class="en">{{ $dict->trans }}</span></div>
+        <div><span class="zh">「注音」</span><span class="zh">{{$dict->trans_zh }}</span></div>
+        <div><span class="zh">「解释」</span><span class="zh">{{ $dict->chinese}}</span></div>
         {{--<span class="mnc">ᠮᠠᠨᠵᡠ →</span>--}}
         {{--<div class="mnc">{{ $dict->manchu }}</div>--}}
         {{--<div class="en">transcription ↑</div>--}}

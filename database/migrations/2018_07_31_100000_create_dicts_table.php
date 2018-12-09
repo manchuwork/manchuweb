@@ -18,6 +18,7 @@ class CreateDictsTable extends Migration
             $table->increments('id');
             $table->string('manchu', 512)->unique();
             $table->string('trans',512);
+            $table->string('trans_zh',512);
             $table->text('chinese');
             $table->string('pic',512);
             $table->integer('user_id')->default(0);

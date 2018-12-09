@@ -4,6 +4,8 @@
 @section("content")
     @include("dict.nav")
     <script src="/js/dict"></script>
+    @include("dict.search_head")
+
     @if(isset($dicts) && (sizeof($dicts) > 0))
 
         @foreach($dicts as $dict)

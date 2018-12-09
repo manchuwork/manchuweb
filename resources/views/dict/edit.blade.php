@@ -12,6 +12,8 @@
              placeholder="请输入满语">{{ $dict->manchu }}</div>
         <div><span class="zh">「转写」</span><span class="en">transcription ↑</span></div>
         <div id="trans" tabindex="0" contentEditable="true" class="input en" placeholder="请输入转写">{{$dict->trans }}</div>
+        <div><span class="zh">「注音」</span><span class="en">中文 ↑</span></div>
+        <div id="trans_zh" tabindex="1" contentEditable="true" class="input zh" placeholder="请输入转写">{{$dict->trans_zh }}</div>
         <div><span class="zh">「解释」</span><span class="zh">中文 ↑</span></div>
         <div id="chinese" tabindex="1" contentEditable="true" class="input zh"
              placeholder="请输入中文">{{ $dict->chinese }}</div>
@@ -44,6 +46,7 @@
             <input id="manchu_hidden" name="manchu" type="hidden" value="">
             <input id="trans_hidden" name="trans" type="hidden" value="">
             <input id="chinese_hidden" name="chinese" type="hidden" value="">
+            <input id="trans_zh_hidden" name="trans_zh" type="hidden" value="">
             <div>
             <span id="imgshowWrap" style="display: none;">
                 <p class="zh">预览图片</p>

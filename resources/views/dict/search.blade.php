@@ -4,26 +4,20 @@
 @section("content")
     @include("dict.nav")
     <script src="/js/dict"></script>
-    <h1 class="zh">满语字典 &nbsp;<span class="zh desc-tip">输入满语、罗马转写或中文查询</span></h1>
-    <hr/>
-    <div id="word" tabindex="0" contentEditable="true" class="input mnc"
-         placeholder="请输入满语、汉语或转写">{{ $word or '' }}</div>
-    <div class="box"> </div>
-    <button id="btnCommit" class="box box1">提交数据</button>
-    <form id="form" action="/dicts/search" method="GET">
-        {{csrf_field()}}
-        <input id="word_hidden" name="word" type="hidden" value="">
-    </form>
+    @include("dict.search_head")
 
     @if(isset($dicts) && (sizeof($dicts) > 0))
 
     @foreach($dicts as $dict)
 
         <div class="content-wrap">
-            <div class="mnc">{!! $dict->manchu !!}</div>
+            <div><span class="zh">「满语」</span><span class="mnc">{{ $dict->manchu }}</span></div>
             {{--<div class="mnc-trans-blod">{{$dict->manchu }}</div>--}}
-            <div class="en">{!! $dict->trans !!}</div>
-            <div class="zh">{!! $dict->chinese!!}</div>
+            <div><span class="zh">「转写」</span><span class="en">{{ $dict->trans }}</span></div>
+            @if(!empty($dict->trans_zh))
+            <div><span class="zh">「注音」</span><span class="zh">{{$dict->trans_zh }}</span></div>
+            @endif
+            <div><span class="zh">「解释」</span><span class="zh">{{ $dict->chinese}}</span></div>
             @if(!empty($dict->pic))
                 <div>
                     <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">

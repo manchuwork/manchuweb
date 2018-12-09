@@ -9,7 +9,7 @@
     <div id="word" tabindex="0" contentEditable="true" class="input mnc"
          placeholder="请输入满语、汉语或转写">{{ $word or '' }}</div>
     <div class="box"> </div>
-    <button id="btnCommit" class="box box1">提交数据</button>
+    <button id="btnCommit" class="box box1">搜索</button>
     <form id="form" action="/dicts/search" method="GET">
         {{csrf_field()}}
         <input id="word_hidden" name="word" type="hidden" value="">
@@ -20,9 +20,9 @@
     <div class="zh">
         @foreach($dicts as $dict)
             <div class="content-wrap">
-                <span class="mnc">{!! $dict->manchu !!}</span>
-                <span class="en">{!! $dict->trans !!}</span>
-                <span class="zh">{!! $dict->chinese!!}</span>
+                <span class="mnc">{{ $dict->manchu }}</span>
+                <span class="en">[{{ $dict->trans }}</span> <span class="zh">{{ $dict->trans_zh }}</span><span class="en">]</span>
+                <span class="zh">{{ $dict->chinese }}</span>
                 @if(!empty($dict->pic))
                     <div>
                         <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
@@ -30,7 +30,7 @@
                 @endif
                 <p class="en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a>
                     @if(!empty($dict->user))
-                    <a href="/user/{{$dict->user->id}}" class="en">{{$dict->user->name}}</a>
+                        <span class="en">{{$dict->user->name}}</span>
                     @endif
                 </p>
             </div>

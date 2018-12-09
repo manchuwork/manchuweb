@@ -34,19 +34,31 @@ class DictController extends Controller
         $word = mb_ereg_replace('[ ]+$', '', $word);
         $word = mb_ereg_replace('&nbsp;', '', $word);
 
+        $search_type = \request('search_type');
+
+        $searchWord = $word;
+        if(!isset($search_type)){
+            $searchWord = "%{$word}%";
+        }elseif($search_type == 'pre'){
+            $searchWord = "{$word}%";
+        }elseif($search_type == 'full'){
+            $searchWord = "{$word}";
+        }
+
         if(preg_match('/[\x{4e00}-\x{9fa5}]/u', $word)>0){
             // 含有中文
-            $dicts = Dict::where('chinese', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
+            $dicts = Dict::where('chinese', 'like', $searchWord)
+                ->orderBy('created_at','desc')->paginate(10);
         }else if(preg_match('/[\x{1800}-\x{18AF}]/u', $word)>0){
             // 含有满文
-            $dicts = Dict::where('manchu', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
+            $dicts = Dict::where('manchu', 'like', $searchWord)->orderBy('created_at','desc')->paginate(10);
         }else if(!empty($word)){
             // 英文处理
-            $dicts = Dict::where('trans', 'like', "%{$word}%")->orderBy('created_at','desc')->paginate(10);
+            $dicts = Dict::where('trans', 'like', $searchWord)->orderBy('created_at','desc')->paginate(10);
 
         }
 
-        return compact('dicts','word');
+        return compact('dicts','word','search_type');
     }
 
     public function query(\Psr\Log\LoggerInterface $log){
@@ -99,7 +111,7 @@ class DictController extends Controller
         if(empty($pic)){
             $pic = '';
         }
-        $params = array_merge(request(['manchu','trans','chinese']),compact('user_id','pic'));
+        $params = array_merge(request(['manchu','trans','trans_zh','chinese']),compact('user_id','pic'));
 
         $dict = Dict::create($params);
 
@@ -132,7 +144,7 @@ class DictController extends Controller
         $dict->manchu = \request('manchu');
         $dict->trans = \request('trans');
         $dict->chinese = \request('chinese');
-
+        $dict->trans_zh = \request('trans_zh');
         $oldPic = $dict->pic;
         if(isset($pic)){
             $dict->pic = $pic;
