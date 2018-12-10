@@ -13,6 +13,9 @@
                 <div><span class="zh">「满语」</span><span class="mnc">{!! $dict->manchu !!}</span></div>
                 {{--<div class="mnc-trans-blod">{{$dict->manchu }}</div>--}}
                 <div><span class="zh">「转写」</span> <span class="en">{!! $dict->trans !!}</span></div>
+                @if(!empty($dict->trans_zh))
+                    <div><span class="zh">「注音」</span><span class="zh">{{$dict->trans_zh }}</span></div>
+                @endif
                 <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>
                 @if(!empty($dict->pic))
                 <div>
