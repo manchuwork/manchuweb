@@ -27,6 +27,10 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    /**
+     * 增加icp 备案配置
+     */
+    'icp' => env("ICP",''),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
