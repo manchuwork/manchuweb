@@ -1,1 +1,44 @@
-.subject {height: 98%;width:auto;display: block;}  .clearfix {display: block;clear:both;}  .related_info{height: 98%;width:auto;display: block;font-size: 0.48em;}  .related_info h1{font-size: 0.7em;}  #mainpic {margin: 3px 0 0 0; /*float: left;*/text-align: center;margin: 3px 12px 0 0;max-width: 155px;overflow: hidden;}  #info { /*float: left;*/max-width: 248px;word-wrap: break-word;font: 12px Helvetica,Arial,sans-serif;}  .pl {font: 12px Arial, Helvetica, sans-serif;line-height: 150%;min-width: 300px;width:20px;margin:0px;color: #666666;}
+.subject {
+    height: 98%;
+    width: auto;
+    display: block;
+}
+
+.clearfix {
+    display: block;
+    clear: both;
+}
+
+.related_info {
+    height: 98%;
+    width: auto;
+    display: block;
+    font-size: 0.48em;
+}
+
+.related_info h1 {
+    font-size: 0.7em;
+}
+
+#mainpic {
+    margin: 3px 0 0 0; /*float: left;*/
+    text-align: center;
+    margin: 3px 12px 0 0;
+    max-width: 155px;
+    overflow: hidden;
+}
+
+#info { /*float: left;*/
+    max-width: 248px;
+    word-wrap: break-word;
+    font: 12px Helvetica, Arial, sans-serif;
+}
+
+.pl {
+    font: 12px Arial, Helvetica, sans-serif;
+    line-height: 150%;
+    min-width: 300px;
+    width: 20px;
+    margin: 0px;
+    color: #666666;
+}

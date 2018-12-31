@@ -9,6 +9,9 @@
             <h3>anakv字典</h3>
             <a href="http://www.anakv.com/" target="_blank">前往：anakv字典</a>
             <hr/>
+            <h3>anakv满文学习</h3>
+            <a href="http://www.anakv.com/manchuscript.php" target="_blank">前往：anakv满文学习</a>
+            <hr/>
             <h3>百度贴吧：满族文化</h3>
             <a href="https://tieba.baidu.com/f?kw=%E6%BB%A1%E6%97%8F%E6%96%87%E5%8C%96&ie=utf-8" target="_blank">前往：百度贴吧：满族文化</a>
             <hr/>

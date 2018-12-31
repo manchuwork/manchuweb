@@ -86,10 +86,11 @@ ul li, ol li {
     text-align: left;
     margin: 0 46px 25px 0;
 }
-
+/*
 .list-col5 .column-item:nth-child(5n) {
     margin-right: 0
 }
+*/
 
 .list-col5 .cover {
     float: none;
