@@ -10,9 +10,9 @@
 |
 */
 
-Route::get('/',function (){
-    return redirect('/index.html');
-});
+
+Route::get('/','\App\Http\Controllers\HomeController@load');
+
 
 // 首页
 
