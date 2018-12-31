@@ -33,5 +33,8 @@
     <a href="/other">
         <span class="zh" style="font-size: small">其他</span></span>
     </a>
+    <a href="/about">
+        <span class="zh" style="font-size: small">关于</span></span>
+    </a>
 </div>
 <hr/>

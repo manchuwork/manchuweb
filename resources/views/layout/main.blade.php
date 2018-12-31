@@ -15,6 +15,7 @@
 <body class="container">
 @include("layout.nav")
 @yield("content")
+@include("layout.share")
 @include("layout.footer")
 </body>
 </html>

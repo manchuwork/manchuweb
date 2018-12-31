@@ -1679,7 +1679,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             <!-- Start Shortcoder content --></p>
         <div class="english-right">@Copy Right 2018</div>
         <a href="http://abkai.net/core/zh/online-keyboard/online-keyboard-manchu/">太清输入法：更多</a>
-    </div></div>
+        <div class="social-share" data-wechat-qrcode-title="请打开微信扫一扫" data-title="@yield('title','Manchu 满语 ᠮᠠᠨᠵᡠ 满族空间')" data-description="@yield('title','Manchu 满语 ᠮᠠᠨᠵᡠ 满族空间') 满族空间是学习满语的空间，欢迎一起学习满语 ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ manchu.work"></div>
+        <!--  css & js -->
+        <link rel="stylesheet" href="/share/css/share.min.css">
+        <script src="/share/js/social-share.min.js"></script>
+    </div>
+</div>
 <script>
     $('[data-url]').click(function () {
 
@@ -1696,6 +1701,5 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         $("#" + id).show();
     });
 </script>
-
 </body>
 </html>

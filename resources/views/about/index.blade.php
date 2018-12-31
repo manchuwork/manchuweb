@@ -8,9 +8,9 @@
 
             </p>
             <p>为了方便自己学习，快速搜索满语词汇，建立本站，也希望能给大家提供方便。</p>
-            <a href="https://www.ximalaya.com/youshengshu/11737385/">乌布西奔妈妈</a>
-            <iframe height="230" width="260" src="https://www.ximalaya.com/thirdparty/player/sound/player.html?id=76027552&type=red" frameborder=0 allowfullscreen></iframe>
-            <p>纳罕哈哈</p>
+            <p>有疑问欢迎邮件咨询<a href="mailto:manchuwork@163.com" class="en">manchuwork@163.com</a></p>
+            <hr/>
+           <p>本人<span class="en">：</span>纳罕哈哈 || 于2018年</p>
 
         </div>
     </div>

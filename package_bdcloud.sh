@@ -22,7 +22,7 @@ rm -rf $TARGET_BASE_DIR/*
 `cp  -Rf $PROJECT_ROOT_PATH/ $TARGET_BASE_DIR`
 
 #清理文件
-#rm -rf $TARGET_LARAVEL_DIR/.env
+rm -rf $TARGET_BASE_DIR/.env
 rm -rf $TARGET_BASE_DIR/.env.example
 rm -rf $TARGET_BASE_DIR/.gitattributes
 rm -rf $TARGET_BASE_DIR/.gitignore
@@ -31,12 +31,18 @@ rm -rf $TARGET_BASE_DIR/.idea
 
 rm -rf $TARGET_BASE_DIR/public/css_bak
 
-rm -rf $TARGET_BASE_DIR/storage/app/public/*
-rm -rf $TARGET_BASE_DIR/storage/framework/sessions/*
-rm -rf $TARGET_BASE_DIR/storage/framework/views/*
+rm -rf $TARGET_BASE_DIR/storage
+#rm -rf $TARGET_BASE_DIR/storage/app/public/*
+#rm -rf $TARGET_BASE_DIR/storage/framework/sessions/*
+#rm -rf $TARGET_BASE_DIR/storage/framework/views/*
 
 #rm -rf $TARGET_BASE_DIR/.*
 rm -rf $TARGET_BASE_DIR/node_modules
+
+rm -rf $TARGET_BASE_DIR/.git
+
+rm -rf $TARGET_BASE_DIR/bootstrap/cache/*
+
 
 cd $TARGET_BASE_DIR
 C=`pwd`

@@ -25,6 +25,8 @@ class LyricController extends Controller
         if(!isset($title)){
             return response("title is empty ". $title.' '. $author, 404);
         }
+
+        $lyrics = [];
         if(isset($title) && isset($author)){
             $lyrics = Lyric::where('title', '=', "{$title}")
                 //->where('author','=',"{$author}")
@@ -56,6 +58,10 @@ class LyricController extends Controller
             $path = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$path)  ;
 
             $path_mnc = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$path_mnc)  ;
+
+            // 转义：
+            $path = str_replace('\\','/',$path);
+            $path_mnc = str_replace('\\','/',$path_mnc);
 
             $lyric_zh_en = $this->loadFile($path);
             $lyric_mnc = $this->loadFile($path_mnc);
