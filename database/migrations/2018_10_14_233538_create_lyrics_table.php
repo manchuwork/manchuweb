@@ -19,6 +19,8 @@ class CreateLyricsTable extends Migration
             $table->string('title', 125)->index();
             $table->string('author', 125)->default('')->index();
             $table->string('file',125)->default('');
+            $table->string('file_mnc',125)->default('');
+
             $table->integer('user_id')->default(0);
             $table->timestamps();
         });
