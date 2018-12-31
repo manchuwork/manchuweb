@@ -101,4 +101,24 @@ Route::resource("lyrics",'\App\Http\Controllers\LyricController');
 Route::get("lyric/search",'\App\Http\Controllers\LyricController@search');
 
 
+// 关于我们
+Route::get("about",function (){
+    return view('about.index');
+});
+Route::get("radio",function (){
+    return view('radio.index');
+});
+
+Route::get("video",function (){
+    return view('video.index');
+});
+
+Route::get("software",function (){
+    return view('software.index');
+});
+
+Route::get("other",function (){
+    return view('other.index');
+});
+
 require_once('resource.php');

@@ -12,15 +12,23 @@
     <a href="/books">
         <span class="zh" style="font-size: small">图书</span></span>
     </a>
-    <a href="/lyrics">
-        <span class="zh" style="font-size: small">歌词</span></span>
-    </a>
     <a href="/play" target="_blank">
         <span class="zh" style="font-size: small">音乐</span></span>
+    </a>
+    <a href="/radio">
+        <span class="zh" style="font-size: small">电台</span></span>
     </a>
     <a href="/ime_manchu" target="_blank">
         <span class="zh" style="font-size: small">输入法</span></span>
     </a>
-
+    <a href="/software">
+        <span class="zh" style="font-size: small">软件</span></span>
+    </a>
+    <a href="/lyrics">
+        <span class="zh" style="font-size: small">歌词</span></span>
+    </a>
+    <a href="/other">
+        <span class="zh" style="font-size: small">其他</span></span>
+    </a>
 </div>
 <hr/>

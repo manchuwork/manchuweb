@@ -10,7 +10,7 @@
     <script src="/js/jquery"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>--}}
     <link rel="stylesheet" href="/css/mini">
-    <title>@yield('title','Manchu 满语 ᠮᠠᠨᠵᡠ') Manchu 满语 ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ</title>
+    <title>@yield('title','Manchu 满语 ᠮᠠᠨᠵᡠ') Manchu 满语 ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ manchu.work</title>
 </head>
 <body class="container">
 @include("layout.nav")
