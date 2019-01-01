@@ -14,6 +14,7 @@
 </head>
 <body class="container">
 @include("layout.nav")
+@include("layout.welcome")
 @yield("content")
 @include("layout.share")
 @include("layout.footer")

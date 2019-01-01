@@ -19,7 +19,7 @@
                 <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>
                 @if(!empty($dict->pic))
                 <div>
-                    <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">
+                    <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片,manchu.work,www.manchu.work,满族空间，满语学习，{{$dict->manchu}} ，{{$dict->trans_zh }}">
                 </div>
                 @endif
                 @if(!empty($dict->user))
