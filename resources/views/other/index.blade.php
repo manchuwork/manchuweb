@@ -20,6 +20,22 @@
             <a href="http://abkai.net/core/" target="_blank">前往：太清网</a>
             <hr/>
 
+            <h3>骏贝勒满族文化工作室</h3>
+            <a href="http://www.tongjun.name/tongjun/gongzuoshi/wupin.html" target="_blank">前往：太清网</a>
+            <hr/>
+
+            <h3>人人小站</h3>
+            <a href="http://zhan.renren.com/manjugisun?tagId=131385&from=template&checked=true" target="_blank">前往：人人小站</a>
+            <hr/>
+
+            <h3>晨读满语</h3>
+            <a href="http://www.sohu.com/a/134394261_158953" target="_blank">前往：晨读满语</a>
+            <hr/>
+
+            <h3>豆瓣满语</h3>
+            <a href="https://site.douban.com/125457/room/949881/" target="_blank">前往：豆瓣满语</a>
+            <hr/>
+
         </div>
 
     </div>
