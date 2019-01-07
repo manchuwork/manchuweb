@@ -31,8 +31,8 @@
             <hr/>
 
             <h3>快手：🔥传承满语🔥巴图鲁 </h3>
-            <h4>快手满语教学第一人！瓜尔佳氏正白旗，会说满语，也会唱满族歌曲</h4>
-            <video data-v-1dda862a="" autoplay="" class="player-video" src="https://jsmov2.a.yximgs.com/bs2/newWatermark/OTY5NzQzMjcxOA_zh_4.mp4" style=""></video>
+            <h5>快手满语教学第一人！瓜尔佳氏正白旗，会说满语，也会唱满族歌曲</h5>
+            <video src="https://jsmov2.a.yximgs.com/bs2/newWatermark/OTY5NzQzMjcxOA_zh_4.mp4" height="430px;" width="500px"></video>
             <p><a href="https://live.kuaishou.com/profile/batulu15140969657" target="_blank">更多：🔥传承满语🔥巴图鲁 </a></p>
             <hr/>
 
