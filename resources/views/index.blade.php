@@ -2,7 +2,6 @@
 @section("title")满族空间首页
 @endsection
 @section("content")
-
     <script src="/js/dict"></script>
     <h1 class="zh">满族字典搜索</h1>
 
