@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/fonts/font-manchu">
     <link rel="stylesheet" href="/css/main">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no" />
+
     <script src="/js/jquery"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>--}}
     <link rel="stylesheet" href="/css/mini">
@@ -15,7 +17,8 @@
 </head>
 <body class="container">
 @include("layout.nav")
-@include("layout.welcome")
+{{--@include("layout.welcome")--}}
+
 @yield("content")
 @include("layout.share")
 @include("layout.footer")
