@@ -132,6 +132,7 @@
             text-orientation: sideways-right;
         }
     </style>
+    @include("layout.tj")
 </head>
 <body>
 <h1>满族空间

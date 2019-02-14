@@ -2,17 +2,18 @@
 @section("title")满族空间首页
 @endsection
 @section("content")
+    <a href="http://i.manchu.work/article/list_2_1.html" class="zh">满族历史<img src="/assets/nav/manchu_history.jpg" alt="满族历史 manchu history, manju"/></a>
+    <hr>
+    <a href="http://i.manchu.work/article/list_5_4.html" class="zh">满族艺术<img src="/assets/nav/manchu_culture.jpg" alt="满族艺术 manchu culture, manju"/></a>
+    <hr>
+    <a href="http://i.manchu.work/article/list_7_5.html" class="zh">满族神话<img src="/assets/nav/manchu_myth.jpg" alt="满族神话 manchu myth, manju"/></a>
+    <hr>
+    <a href="http://i.manchu.work/article/list_4_3.html" class="zh">满语教程<img src="/assets/nav/manchu_language.jpg" alt="满语教程 manchu language, manju gisun"/></a>
+    <hr>
     <script src="/js/dict"></script>
     <h1 class="zh">满族字典搜索</h1>
+    @include("dict.search_head")
 
-    <div id="word" tabindex="0" contentEditable="true" class="input mnc"
-         placeholder="请输入满语、汉语或转写">{{ $word or '' }}</div>
-    <div class="box"> </div>
-    <button id="btnCommit" class="box box1">搜索</button>
-    <form id="form" action="/dicts/search" method="GET">
-        {{csrf_field()}}
-        <input id="word_hidden" name="word" type="hidden" value="">
-    </form>
     <br/>
     <h1 class="zh">满语字典</h1>
     <hr/>
@@ -62,5 +63,6 @@
         </div>
         <a href="/posts">查看更多：满语常用语句</a>
     @endif
+
 
 @endsection
