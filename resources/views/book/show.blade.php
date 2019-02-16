@@ -1,6 +1,7 @@
 @extends("layout.main")
 @section("title")ᠮᠠᠨᠵᡠ manchu图书查看@endsection
 @section("content")
+    <link rel="stylesheet" href="/css/book">
     <link rel="stylesheet" href="/css/bookinfo">
     @include("book.nav")
     <h1 class="zh">{{$book->title}}</h1>
@@ -28,27 +29,28 @@
     </div>
     <div class="related_info zh">
         @if(!empty($book->brief_intro))
-        <h2><span class="">「内容简介」</span></h2>
+        <h2><span class="col_title">「内容简介」</span></h2>
         {{$book->brief_intro}}
         @endif
-        @if(!empty($book->about_the_author))<h2><span class="">「作者」</span></h2>
+        @if(!empty($book->about_the_author))<h2><span class="col_title">「作者」</span></h2>
         {{$book->about_the_author}}@endif
-        @if(!empty($book->catalogue))<h2><span class="">「目录」</span></h2>
+        @if(!empty($book->catalogue))<h2><span class="col_title">「目录」</span></h2>
         {{$book->catalogue}}@endif
     </div>
+    @if(!empty($book->buy_url))
+        <a class="zh" href="{{ $book->buy_url }}" target="_blank">购买</a>
+    @endif
     @if(!empty($book->file))
         <a class="zh"  href="{{ asset('/file/'.$book->file) }}" target="_blank">下载</a>
         <a class="zh" href="/reader/index.html#{{$book->file}}" target="_blank">阅读</a>
-    @else
-
     @endif
     @can('update', $book)
         @if($isShow)
             <a class="zh"  href="/books/{{$book->id}}/edit">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
+                <span class="" aria-hidden="true">编辑</span>
             </a>
             <a class="zh"  href="/books/{{$book->id}}/delete">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true">删除</span>
+                <span class="" aria-hidden="true">删除</span>
             </a>
         @endif
     @endcan

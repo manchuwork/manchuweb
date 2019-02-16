@@ -273,3 +273,8 @@ section a {
 .column-banner .slide-prev:active, .column-banner .slide-next:active {
     opacity: .8
 }
+
+.col_title{
+    color: #666666;
+    font: 15px Arial, Helvetica, sans-serif;
+}

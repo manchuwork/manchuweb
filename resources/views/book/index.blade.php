@@ -4,7 +4,6 @@
 @section("content")
     @include("book.nav")
     <link rel="stylesheet" href="/css/book">
-
     <section class="column-list">
         {{--<div class="hd lined"><h3>悬疑小说</h3>--}}
             {{--<span class="more-links"><a href="/kind/508?works_type=1&amp;sort=hot&amp;icn=columns-kind">更多</a></span>--}}

@@ -1,5 +1,3 @@
-
-
 var dict=document.getElementById('icIBahyI-main_cont');
 try{
     var loading=document.getElementById('loading');
