@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+
 class ResourceController extends Controller
 {
 
@@ -39,7 +40,7 @@ class ResourceController extends Controller
 
 
         if(!file_exists($path)){
-            echo 'not found '.$path;
+            echo 'not found ';
             //报404错误
             header("HTTP/1.1 404 Not Found");
             header("Status: 404 Not Found");
@@ -65,7 +66,7 @@ class ResourceController extends Controller
 
 
         if(!file_exists($path)){
-            echo 'not found '.$path;
+            echo 'not found ';
             //报404错误
             header("HTTP/1.1 404 Not Found");
             header("Status: 404 Not Found");
@@ -184,9 +185,13 @@ class ResourceController extends Controller
         }
 
         $realpath = substr_replace($path,"",strpos($path,$needle),strlen($needle));
-        $dir = storage_path("app".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR .$realpath)  ;
+        $dir = storage_path("app".DIRECTORY_SEPARATOR."public" .$realpath)  ;
 
+        if(!file_exists($dir)){
+            return response("unkonw file", 404);
+        }
         return $this->res(file_get_contents($dir), $contentType);
+
     }
 
     private function resCurrentDirFile($dir, $file, $ext, $contentType){
@@ -210,7 +215,7 @@ class ResourceController extends Controller
         }
 
 
-        return response("unkonw ". $file, 404);
+        return response("unkonw file", 404);
     }
 
     private function res($content, $contentType){

@@ -49,7 +49,7 @@ class BookController extends Controller
 
 
 
-    public function _unsetNull(& $arr){
+    private function _unsetNull(& $arr){
         if($arr !== null){
             if(is_array($arr)){
                 if(!empty($arr)){
@@ -68,16 +68,6 @@ class BookController extends Controller
         return $arr;
     }
 
-    public function edit(Book $book){
-        if(!Auth::check()){
-            return redirect("/login");
-        }
-        $this->middleware('auth');
-
-        $book['price'] = number_format($book['price'] /100, 2);
-
-        return view('book/edit',compact('book'));
-    }
 
     public function store(){
         if(!Auth::check()){
@@ -92,7 +82,7 @@ class BookController extends Controller
         $user_id = \Auth::id();
 
         //$book = [];
-        $bookNewWithFiler = $this->saveOrUpdateBookPre();
+        $bookNewWithFiler = $this->_saveOrUpdateBookPre();
 
         $bookNewWithFiler = array_merge($bookNewWithFiler, compact('user_id'));
 
@@ -103,6 +93,18 @@ class BookController extends Controller
 
         return redirect('/books');
     }
+
+    public function edit(Book $book){
+        if(!Auth::check()){
+            return redirect("/login");
+        }
+        $this->middleware('auth');
+
+        $book['price'] = number_format($book['price'] /100, 2);
+
+        return view('book/edit',compact('book'));
+    }
+
 
     public function update(Book $book){
         if(!Auth::check()){
@@ -130,7 +132,7 @@ class BookController extends Controller
         $id = $book->id;
 
 
-        $bookNewWithFiler = $this->saveOrUpdateBookPre();
+        $bookNewWithFiler = $this->_saveOrUpdateBookPre();
 
         foreach ($bookNewWithFiler as $key => $value) {
             $book->{$key} = $value;
@@ -151,19 +153,29 @@ class BookController extends Controller
     }
 
     public function delete(Book $book){
+        //dd('hahha');
         if(!Auth::check()){
             return redirect("/login");
         }
         $this->middleware('auth');
         $this->authorize('delete', $book);
 
-        $oldFile = $book->pic;
+        $oldPic = $book->pic;
+
+        $oldFile = $book->file;
         $book ->delete();
 
-        if(isset($oldFile)){
-            ImageTool::delete($oldFile);
+        if(isset($oldPic)){
+            ImageTool::delete($oldPic);
 
         }
+
+        if(isset($oldFile) && !empty($oldFile) && $oldFile != ''){
+            FileTool::delete($oldFile);
+
+        }
+
+
         return redirect("/books/");
     }
 
@@ -172,7 +184,7 @@ class BookController extends Controller
      * @param $user_id
      * @return array
      */
-    public function saveOrUpdateBookPre()
+    private function _saveOrUpdateBookPre()
     {
         $pic = ImageTool::saveImgFromRequestByDateDir('pic', 'bookpic', 135, 206);
 

@@ -87,6 +87,8 @@ Route::get('/dict', '\App\Http\Controllers\DictController@queryWord');
 
 Route::resource("books",'\App\Http\Controllers\BookController');
 
+Route::get("books/{book}/delete",'\App\Http\Controllers\BookController@delete');
+
 Route::resource("olbooks",'\App\Http\Controllers\OlBookController');
 
 Route::resource("olcatalogs",'\App\Http\Controllers\OlCatalogController');
