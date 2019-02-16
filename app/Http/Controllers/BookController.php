@@ -25,6 +25,13 @@ class BookController extends Controller
     public function show(Book $book){
         $isShow = true;
 
+        if(!isset($book['price']) || $book['price'] <= 0){
+            unset($book['price']);
+        }else{
+
+            $book['price'] =bcdiv($book['price'], '100', 2);
+
+        }
         return view('book/show',compact('book','isShow'));
     }
 
@@ -69,10 +76,18 @@ class BookController extends Controller
             $pic = '';
         }
 
-        $file = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
+        $filePropertiesArray = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
 
-        $params = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'),$file);
+        if(empty($filePropertiesArray)){
+            $filePropertiesArray = null;
+        }
+        $params = array_merge(request(['title','title_mnc','subtitle','author','translator','publisher','publish_year','page_count','price',
+            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
+
+
+        if(isset($filePropertiesArray) && is_array($filePropertiesArray)){
+            $params = array_merge($params, $filePropertiesArray);
+        }
 
         if(!isset($params['page_count'])){
             $params['page_count']= 0;
@@ -82,6 +97,7 @@ class BookController extends Controller
             $params['price']=0;
         }
 
+        $params['price'] = bcmul($params['price'] , '100',0);
         $this->_unsetNull($params);
         //dd ($params);
 
@@ -144,9 +160,16 @@ class BookController extends Controller
 
         $pic = ImageTool::saveImgFromRequestByDateDir('pic','bookpic',135,206);
 
-        $file = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
+        $filePropertiesArray = FileTool::saveFileFromRequestByDateDir01('file','bookfile');
 
 
+        if(empty($pic)){
+            $pic = null;
+        }
+
+        if(empty($filePropertiesArray)){
+            $filePropertiesArray = null;
+        }
 
         $oldPic = null;
 
@@ -164,11 +187,22 @@ class BookController extends Controller
             $oldFile = $book->file;
         }
 
-        $bookNew = array_merge(request(['title','title_mnc','author','translator','publisher','page_count','price',
-            'binding','isbn','brief_intro','about_the_author','catalogue']),compact('user_id','pic'), $file);
+        $params = array_merge(request(['title','title_mnc','subtitle','author','translator','publisher','publish_year','page_count','price',
+            'binding','isbn','pic','brief_intro','about_the_author','catalogue']),compact('user_id','pic'));
 
 
-        $bookNewWithFiler = array_filter($bookNew);
+        if(isset($filePropertiesArray) && is_array($filePropertiesArray)){
+            $params = array_merge($params, $filePropertiesArray);
+        }
+
+        if(!isset($params['price'])){
+            $params['price']=0;
+        }
+
+        $params['price'] = bcmul($params['price'] , '100',0);
+
+
+        $bookNewWithFiler = array_filter($params);
 
 
 
@@ -181,12 +215,12 @@ class BookController extends Controller
         $id = $book->id;
         $book->update();
 
-        if(isset($pic) && !empty($oldPic) && $oldPic != ''){
+        if(!empty($pic) && !empty($oldPic) && $oldPic != ''){
             ImageTool::delete($oldPic);
 
         }
 
-        if(isset($file) && isset($file['file']) && !empty($oldFile) && $oldFile != ''){
+        if(!empty($filePropertiesArray) && isset($filePropertiesArray['file']) && !empty($oldFile) && $oldFile != ''){
             FileTool::delete($oldFile);
 
         }

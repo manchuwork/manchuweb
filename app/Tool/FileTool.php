@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Mockery\Exception;
 use Psy\Util\Json;
 
 //use Intervention\Image\ImageManager;
@@ -30,8 +31,15 @@ class FileTool
 
         $file = request()->file($imgFieldName);
 
+        if(empty($file)){
+
+            return null;
+        }
         $extension = $file->getClientOriginalExtension();
+        //dd($file);
+
         $mimeType = $file->getMimeType();
+
 
        // echo ($extension.",mimeType:".$mimeType);
 

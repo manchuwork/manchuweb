@@ -37,8 +37,7 @@
 .pl {
     font: 12px Arial, Helvetica, sans-serif;
     line-height: 150%;
-    min-width: 300px;
-    width: 20px;
-    margin: 0px;
+    height: 60px;
+    display:inline-block;
     color: #666666;
 }

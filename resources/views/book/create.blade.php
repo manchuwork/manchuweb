@@ -9,21 +9,25 @@
         <div id="title" tabindex="0"  contentEditable="true" class="input zh" placeholder="请输入标题"></div>
         <div><span class="zh">「满语标题」</span></div>
         <div id="title_mnc" tabindex="0"  contentEditable="true" class="input mnc" placeholder="请输入满语标题"></div>
+        <div><span class="zh">「子标题」</span></div>
+        <div id="subtitle" tabindex="0"  contentEditable="true" class="input mnc" placeholder="请输入子标题"></div>
         <div><span class="zh">「作者」</span></div>
         <div id="author" tabindex="1" contentEditable="true" class="input zh" placeholder="请输入作者"></div>
         <div><span class="zh">「翻译人」</span></div>
         <div id="translator" tabindex="1" contentEditable="true" class="input zh" placeholder="请输入翻译人"></div>
         <div><span class="zh">「出版社」</span></div>
         <div id="publisher" tabindex="1" contentEditable="true" class="input zh" placeholder="请输入出版社"></div>
+        <div><span class="zh">「出版年」</span></div>
+        <div id="publish_year" tabindex="1" contentEditable="true" class="input en" placeholder="请输入出版年"></div>
         <div><span class="zh">「页数」</span></div>
-        <div id="page_count" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入页数"></div>
+        <div id="page_count" tabindex="2" contentEditable="true" class="input en" placeholder="请输入页数"></div>
         <div><span class="zh">「价格」</span></div>
-        <div id="price" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入价格"></div>
+        <div id="price" tabindex="2" contentEditable="true" class="input en" placeholder="请输入价格"></div>
 
         <div><span class="zh">「装帧」</span></div>
-        <div id="binding" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入isbn"></div>
+        <div id="binding" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入装帧"></div>
         <div><span class="zh">「isbn」</span></div>
-        <div id="isbn" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入isbn"></div>
+        <div id="isbn" tabindex="2" contentEditable="true" class="input en" placeholder="请输入isbn"></div>
         <div><span class="zh">「图书简介」</span></div>
         <div id="brief_intro" tabindex="2" contentEditable="true" class="input zh" placeholder="请输入图书简介"></div>
         <div><span class="zh">「作者简介」</span></div>
@@ -35,14 +39,17 @@
             {{csrf_field()}}
             <input id="title_hidden" name="title" type="hidden" value="">
             <input id="title_mnc_hidden" name="title_mnc" type="hidden" value="">
+            <input id="subtitle_hidden" name="subtitle" type="hidden" value="">
             <input id="author_hidden" name="author" type="hidden" value="">
             <input id="translator_hidden" name="translator" type="hidden" value="">
             <input id="publisher_hidden" name="publisher" type="hidden" value="">
+            <input id="publish_year_hidden" name="publish_year" type="hidden" value="">
+
             <input id="page_count_hidden" name="page_count" type="hidden" value="">
             <input id="price_hidden" name="price" type="hidden" value="">
 
 
-            <input id="binding_hidden" name="isbn" type="hidden" value="">
+            <input id="binding_hidden" name="binding" type="hidden" value="">
 
             <input id="isbn_hidden" name="isbn" type="hidden" value="">
 

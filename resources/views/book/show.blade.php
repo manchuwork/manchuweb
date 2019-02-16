@@ -10,25 +10,31 @@
             <img src="{{ asset('/pic/'.$book->pic) }}" style="width: 135px" alt="{{$book->title}}" rel="v:photo"
                  style="width: 135px">
         @else
-            <img src="img/s28950702.jpg"  title="点击看大图" alt="{{$book->title}}" rel="v:photo"
+            <img src="/img/default_book_cover.png"  alt="{{$book->title}}" rel="v:photo"
                  style="width: 135px"/>
         @endif
 
-        <div id="mainpic" class=""><a class="nbg" href="{{$book->pic}}"
-                                      title="{{$book->title}}">
-            </a></div>
-        <div id="info" class="zh"><span><span class="pl"> 作者</span>: {{$book->author}}</span><br><span
-                    class="pl">出版社:</span> {{$book->publisher}}<br><span class="pl">副标题:</span> {{$book->subtitle}}<br><span class="pl">出版年:</span>{{$book->publish_year}}<br><span
-                    class="pl">页数:</span> <span class="en">{{$book->page_count}}</span><br><span class="pl">定价:</span><span class="en">{{$book->price}}</span> 元<br><span class="pl">装帧:</span> {{$book->binding}}<br><span
-                    class="pl">ISBN:</span> {{$book->isbn}}<br></div>
+        <div id="info" class="zh">
+            @if(!empty($book->author))<span class="pl">作者</span>{{$book->author}}<br>@endif
+            @if(!empty($book->translator))<span class="pl">翻译人</span>{{$book->translator}}<br>@endif
+            @if(!empty($book->subtitle))<span class="pl">副标题</span>{{$book->subtitle}}<br>@endif
+            @if(!empty($book->publisher))<span class="pl">出版社</span>{{$book->publisher}}<br>@endif
+            @if(!empty($book->publish_year))<span class="pl">出版年</span><span class="en">{{$book->publish_year}}</span><br>@endif
+            @if(!empty($book->page_count))<span class="pl">页数</span><span class="en">{{$book->page_count}}</span><br>@endif
+            @if(!empty($book->price))<span class="pl">定价</span><span class="en">{{$book->price}}</span> 元<br>@endif
+            @if(!empty($book->binding))<span class="pl">装帧</span>{{$book->binding}}<br>@endif
+            @if(!empty($book->isbn))<span class="pl">ISBN</span><span class="en">{{$book->isbn}}</span><br>@endif
+        </div>
     </div>
     <div class="related_info zh">
-        <h2><span class="">内容简介</span></h2>
+        @if(!empty($book->brief_intro))
+        <h2><span class="">「内容简介」</span></h2>
         {{$book->brief_intro}}
-        <h2><span class="">作者</span></h2>
-        {{$book->about_the_author}}
-        <h2><span class="">目录</span></h2>
-        {{$book->catalogue}}
+        @endif
+        @if(!empty($book->about_the_author))<h2><span class="">「作者」</span></h2>
+        {{$book->about_the_author}}@endif
+        @if(!empty($book->catalogue))<h2><span class="">「目录」</span></h2>
+        {{$book->catalogue}}@endif
     </div>
     @if(!empty($book->file))
         <a class="zh"  href="{{ asset('/file/'.$book->file) }}" target="_blank">下载</a>

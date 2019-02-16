@@ -18,7 +18,8 @@
                                 @if(!empty($book->pic))
                                     <img src="{{ asset('/pic/'.$book->pic) }}" alt="图片">
                                 @else
-                                    <img src="" alt="图片">
+                                    <img src="/img/default_book_cover.png"  title="点击看大图" alt="{{$book->title}}" rel="v:photo"
+                                         width="110px"/>
                                 @endif</a>
                         </div>
                         <h4 class="title"><a href="/books/{{$book->id}}">{{$book->title}}</a></h4>
