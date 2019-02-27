@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\WordType;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use \App\Dict;
@@ -58,7 +59,18 @@ class DictController extends Controller
 
         }
 
-        return compact('dicts','word','search_type');
+
+        $title_prefix = '';
+        $description = '';
+        if(!empty($dicts)){
+            foreach ($dicts as $dict) {
+                $title_prefix .= $dict->manchu .' '. $dict->trans . ',';
+
+                $description .=  $dict->manchu .' '. $dict->trans . ' '. $dict->trans_zh . ',';
+            }
+        }
+
+        return compact('dicts','word','search_type','title_prefix','description');
     }
 
     public function query(\Psr\Log\LoggerInterface $log){
@@ -73,13 +85,29 @@ class DictController extends Controller
     public function index(\Psr\Log\LoggerInterface $log){
 
         $dicts = Dict::orderBy('created_at','desc')->paginate(10);
-        return view('dict/index',compact('dicts'));
+
+        $title_prefix = '';
+        $description = '';
+        if(!empty($dicts)){
+            foreach ($dicts as $dict) {
+                $title_prefix .= $dict->manchu .' '. $dict->trans . ',';
+
+                $description .=  $dict->manchu .' '. $dict->trans . ' '. $dict->trans_zh . ',';
+            }
+        }
+
+
+        return view('dict/index',compact('dicts','title_prefix','description'));
     }
 
     public function show(Dict $dict){
         $isShow = true;
 
-        return view('dict/show',compact('dict','isShow'));
+        $title_prefix = '';
+        $description = '';
+        $title_prefix .= $dict->manchu .' '. $dict->trans . ',';
+        $description .=  $dict->manchu .' '. $dict->trans . ' '. $dict->trans_zh . ',';
+        return view('dict/show',compact('dict','isShow','title_prefix','description'));
     }
 
     public function create(){
@@ -88,7 +116,8 @@ class DictController extends Controller
         }
         $this->middleware('auth');
 
-        return view('dict/create');
+        $wordTypes = WordType::orderBy('id','asc')->paginate(50);
+        return view('dict/create',compact('wordTypes'));
     }
 
     public function store(){
@@ -106,12 +135,16 @@ class DictController extends Controller
         $user_id = \Auth::id();
 
 
+        $wordType = request('word_type',[]);
+        $word_types = implode(",", $wordType);
+
+
         $pic = ImageTool::saveImgFromRequestByDateDir('pic','dictpic',200,200);
 
         if(empty($pic)){
             $pic = '';
         }
-        $params = array_merge(request(['manchu','trans','trans_zh','chinese']),compact('user_id','pic'));
+        $params = array_merge(request(['manchu','trans','trans_zh','chinese']),compact('user_id','pic','word_types'));
 
         $dict = Dict::create($params);
 
@@ -123,7 +156,17 @@ class DictController extends Controller
             return redirect("/login");
         }
         $this->middleware('auth');
-        return view('dict/edit',compact('dict'));
+
+        $wordTypes = WordType::orderBy('id','asc')->paginate(50);
+        //dd($dict);
+
+        $dictWordTypes = explode(",", $dict->word_types);
+        //dd($dictWordTypes);
+
+        if(!isset($dictWordTypes)){
+            $dictWordTypes = [];
+        }
+        return view('dict/edit',compact('dict','wordTypes','dictWordTypes'));
     }
 
     public function update(Dict $dict){
@@ -146,8 +189,16 @@ class DictController extends Controller
         $dict->chinese = \request('chinese');
         $dict->trans_zh = \request('trans_zh');
         $oldPic = $dict->pic;
+
+        $wordType = request('word_type',[]);
+        $word_types = implode(",", $wordType);
+
         if(isset($pic)){
             $dict->pic = $pic;
+        }
+
+        if(isset($word_types)){
+            $dict->word_types = $word_types;
         }
         $id = $dict->id;
         $dict->update();

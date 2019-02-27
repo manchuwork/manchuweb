@@ -1,5 +1,7 @@
 @extends("layout.main")
-@section("title")ᠮᠠᠨᠵᡠ manchu查看页面@endsection
+@section("title"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,满语字典-查看@endsection
+@section("keywords"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,满语字典-查看@endsection
+@section("description"){{$description}}, ᠮᠠᠨᠵᡠ, manchu, manju,满语字典-查看@endsection
 @section("content")
     @include("dict.nav")
     <script src="/js/edit"></script>
@@ -10,13 +12,9 @@
         <div><span class="zh">「转写」</span><span class="en">{{ $dict->trans }}</span></div>
         <div><span class="zh">「注音」</span><span class="zh">{{$dict->trans_zh }}</span></div>
         <div><span class="zh">「解释」</span><span class="zh">{{ $dict->chinese}}</span></div>
-        {{--<span class="mnc">ᠮᠠᠨᠵᡠ →</span>--}}
-        {{--<div class="mnc">{{ $dict->manchu }}</div>--}}
-        {{--<div class="en">transcription ↑</div>--}}
-        {{--<div class="en">{{$dict->trans }}</div>--}}
-        {{--<div class="zh">中文 ↑</div>--}}
-        {{--<div class="zh">{{ $dict->chinese }}</div>div--}}
-
+        @if(!empty($dict->word_types))
+            <div><span class="zh">「词性」</span><span class="zh">（{{$dict->word_types }}）</span></div>
+        @endif
         @if(!empty($dict->pic))
             <div>
                 <img src="{!! asset('/pic/'.$dict->pic) !!}" alt="图片">

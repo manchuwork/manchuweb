@@ -1,6 +1,7 @@
 @extends("layout.main")
-@section("title")ᠮᠠᠨᠵᡠ manchu满语字典@endsection
-
+@section("title"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,search满语字典-搜索@endsection
+@section("keywords"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,search满语字典-搜索@endsection
+@section("description"){{$description}}, ᠮᠠᠨᠵᡠ, manchu, manju,search满语字典-搜索@endsection
 @section("content")
     @include("dict.nav")
     <script src="/js/dict"></script>
@@ -18,6 +19,9 @@
             <div><span class="zh">「注音」</span><span class="zh">{{$dict->trans_zh }}</span></div>
             @endif
             <div><span class="zh">「解释」</span><span class="zh">{{ $dict->chinese}}</span></div>
+            @if(!empty($dict->word_types))
+                <div><span class="zh">「词性」</span><span class="zh">（{{$dict->word_types }}）</span></div>
+            @endif
             @if(!empty($dict->pic))
                 <div>
                     <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">

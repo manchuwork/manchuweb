@@ -43,6 +43,9 @@
         <form id="form" action="/dicts/{{$dict->id}}" enctype="multipart/form-data" method="POST">
             {{csrf_field()}}
             {{method_field("PUT")}}
+            @foreach($wordTypes as $wordType)
+                <span style="border: lightblue dashed 1px"><input type="checkbox" name="word_type[]" value="{!! $wordType->title !!}" @if(in_array($wordType->title,$dictWordTypes)) checked @endif/><span class="zh" title="({!! $wordType->desc !!})">{!! $wordType->title !!}</span></span>
+            @endforeach
             <input id="manchu_hidden" name="manchu" type="hidden" value="">
             <input id="trans_hidden" name="trans" type="hidden" value="">
             <input id="chinese_hidden" name="chinese" type="hidden" value="">

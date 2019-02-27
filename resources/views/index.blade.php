@@ -23,6 +23,7 @@
                 <span class="mnc">{{ $dict->manchu }}</span>
                 <span class="en">[{{ $dict->trans }}</span> <span class="zh">{{ $dict->trans_zh }}</span><span class="en">]</span>
                 <span class="zh">{{ $dict->chinese }}</span>
+                @if(!empty($dict->word_types))（<span class="zh">{{ $dict->word_types }}</span>）@endif
                 @if(!empty($dict->pic))
                     <div>
                         <img src="{{ asset('/pic/'.$dict->pic) }}" alt="图片">

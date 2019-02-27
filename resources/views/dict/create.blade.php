@@ -20,6 +20,9 @@
 
         <form id="form" action="/dicts/create" enctype="multipart/form-data" method="POST">
             {{csrf_field()}}
+            @foreach($wordTypes as $wordType)
+                <span style="border: lightblue dashed 1px"><input type="checkbox" name="word_type[]" value="{!! $wordType->title !!}"/><span class="zh" title="({!! $wordType->desc !!})">{!! $wordType->title !!}</span></span>
+            @endforeach
             <input id="manchu_hidden" name="manchu" type="hidden" value="">
             <input id="trans_hidden" name="trans" type="hidden" value="">
             <input id="chinese_hidden" name="chinese" type="hidden" value="">

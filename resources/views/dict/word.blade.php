@@ -1,5 +1,3 @@
-
-
 var dict=document.getElementById('icIBahyI-main_cont');
 try{
     var loading=document.getElementById('loading');
@@ -13,6 +11,9 @@ try{
                 +'   <div><span class="zh">「满语」</span><span class="mnc">{!! $dict->manchu !!}</span></div>'
                 +'  <div><span class="zh">「转写」</span> <span class="en">{!! $dict->trans !!}</span></div>'
                 +'  <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>'
+                @if(!empty($dict->word_types))
+                    +' <div><span class="zh">「词性」</span><span class="zh">（{{$dict->word_types }}）</span></div>'
+                @endif
                 @if(!empty($dict->pic))
                     +'   <div> <img src="{!! asset('/pic/'.$dict->pic) !!}" alt="图片"></div>'
                 @endif
