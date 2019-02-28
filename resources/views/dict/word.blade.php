@@ -20,7 +20,8 @@ try{
                 {{--+'   <p class="blog-post-meta en"><a href="/dicts/{{$dict->id}}">{{$dict->created_at}}</a> <a href="/user/{{$dict->user->id}}" class="zh">{{$dict->user->name}}</a></p>'--}}
             +'  </div>'
         @endforeach
-       +'{{$dicts->links()}}'
+
+{{--       +'{{$dicts->links()}}'--}}
     @else
         +'<div class="mnc"><span class="zh" >没有查找到</span></div>'
     @endif
