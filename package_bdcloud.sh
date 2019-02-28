@@ -60,5 +60,5 @@ rm $APP_BASE/${TARGET}.zip
 zip -r $APP_BASE/${TARGET}.zip *
 echo "$APP_BASE/${TARGET}.zip"
 
-echo "finished"
+echo "bdcloud finished"
 
