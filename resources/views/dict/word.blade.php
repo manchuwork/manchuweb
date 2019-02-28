@@ -8,9 +8,9 @@ try{
 
         @foreach($dicts as $dict)
             +' <div class="content-wrap container-dict">'
-                +'   <div><span class="zh">「满语」</span><span class="mnc">{!! $dict->manchu !!}</span></div>'
-                +'  <div><span class="zh">「转写」</span> <span class="en">{!! $dict->trans !!}</span></div>'
-                +'  <div><span class="zh">「解释」</span><span class="zh">{!! $dict->chinese!!}</span></div>'
+                +'   <div><span class="zh">「满语」</span><span class="mnc">{{$dict->manchu}}</span></div>'
+                +'  <div><span class="zh">「转写」</span> <span class="en">{{$dict->trans}}</span></div>'
+                +'  <div><span class="zh">「解释」</span><span class="zh">{{$dict->chinese}}</span></div>'
                 @if(!empty($dict->word_types))
                     +' <div><span class="zh">「词性」</span><span class="zh">（{{$dict->word_types }}）</span></div>'
                 @endif
