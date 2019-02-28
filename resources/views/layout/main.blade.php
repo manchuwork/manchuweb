@@ -9,6 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"content="width=device-width,initial-scale=1.0" />
     <link rel="stylesheet" href="/css/mini">
+    <script src="/js/jquery"></script>
     <title>@yield('title','Manchu 满语 ᠮᠠᠨᠵᡠ') Manchu 满语 ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ manju gisun manchu.work</title>
 </head>
 <body class="container">
@@ -16,7 +17,6 @@
 {{--@include("layout.welcome")--}}
 @yield("content")
 @include("layout.share")
-<script src="/js/jquery"></script>
 @include("layout.tj")
 @include("layout.footer")
 </body>
