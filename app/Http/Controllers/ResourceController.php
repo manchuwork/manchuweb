@@ -153,7 +153,9 @@ class ResourceController extends Controller
         $needle = "file";
 
         $contentType = 'application/octet-stream';
+        $extension = '';
         $pos = strrpos($path,"/");
+        $fileName = $path;
         if($pos){
           $p = substr($path, $pos+1);
 
@@ -161,7 +163,9 @@ class ResourceController extends Controller
 
             $str_split = explode('|', $file_decode);
 
+            $fileName = $file_decode;
             if(sizeof($str_split) == 3){
+                $fileName = $str_split[0];
                 $extension = $str_split[1];
                 $mimeType = $str_split[2];
 
@@ -180,6 +184,11 @@ class ResourceController extends Controller
 
                         break;
                     }
+                    default:{
+                        $contentType = 'application/octet-stream';
+
+                        break;
+                    }
                 }
             }
         }
@@ -190,8 +199,69 @@ class ResourceController extends Controller
         if(!file_exists($dir)){
             return response("unkonw file", 404);
         }
-        return $this->res(file_get_contents($dir), $contentType);
 
+
+        $this->download($dir,'file'.$fileName.'.'.$extension, $contentType);
+        //http://www.manchu.work/file/20190302/bookfile/MHdtMExFSVRqbEhWTjB0SE12clh1ZGZ4TmhzakZ3cVE0bFM5NlF6d3xwZGZ8YXBwbGljYXRpb24vcGRm
+        //return $this->res(file_get_contents($dir), $contentType);
+
+    }
+
+    /**
+     * PHP-HTTP断点续传实现
+     * @param string $path: 文件所在路径
+     * @param string $file: 文件名
+     * @param string $contentType type
+     * @return void
+     */
+    function download($path,$file, $contentType) {
+        $real = $path;//.'/'.$file;
+
+        if(!file_exists($real)) {
+            return false;
+        }
+        $size = filesize($real);
+        $size2 = $size-1;
+        $range = 0;
+
+        if(isset($_SERVER['HTTP_RANGE'])) {   //http_range表示请求一个实体/文件的一个部分,用这个实现多线程下载和断点续传！
+            header('HTTP /1.1 206 Partial Content');
+            $range = str_replace('=','-',$_SERVER['HTTP_RANGE']);
+            $range = explode('-',$range);
+            $range = trim($range[1]);
+            header('Content-Length:'.$size);
+            header('Content-Range: bytes '.$range.'-'.$size2.'/'.$size);
+        } else {
+            header('Content-Length:'.$size);
+            header('Content-Range: bytes 0-'.$size2.'/'.$size);
+        }
+        header('Accenpt-Ranges: bytes');
+
+
+        if(isset($contentType)){
+            header('Content-Type:'.$contentType);
+        }else{
+            header('Content-Type:application/octet-stream');
+        }
+        header("Cache-control: public");
+        header("Pragma: public");
+        //解决在IE中下载时中文乱码问题
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        if(preg_match('/MSIE/',$ua)) {    //表示正在使用 Internet Explorer。
+            $ie_filename = str_replace('+','%20',urlencode($file));
+            header('Content-Disposition:attachment; filename='.$ie_filename);
+        } else {
+            header('Content-Disposition:attachment; filename='.$file);
+        }
+        $fp = fopen($real,'rb+');
+        fseek($fp,$range);                //fseek:在打开的文件中定位,该函数把文件指针从当前位置向前或向后移动到新的位置，新位置从文件头开始以字节数度量。成功则返回 0；否则返回 -1。注意，移动到 EOF 之后的位置不会产生错误。
+        while(!feof($fp)) {               //feof:检测是否已到达文件末尾 (eof)
+            set_time_limit(0);              //注释①
+            print(fread($fp,1024));         //读取文件（可安全用于二进制文件,第二个参数:规定要读取的最大字节数）
+            ob_flush();                     //刷新PHP自身的缓冲区
+            flush();                       //刷新缓冲区的内容(严格来讲, 这个只有在PHP做为apache的Module(handler或者filter)安装的时候, 才有实际作用. 它是刷新WebServer(可以认为特指apache)的缓冲区.)
+        }
+        fclose($fp);
     }
 
     private function resCurrentDirFile($dir, $file, $ext, $contentType){
