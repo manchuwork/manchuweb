@@ -42,7 +42,12 @@
     @endif
     @if(!empty($book->file))
         <a class="zh"  href="{{ asset('/file/'.$book->file) }}" target="_blank">下载</a>
-        <a class="zh" href="/reader/index.html#{{$book->file}}" target="_blank">阅读</a>
+
+        @if(!empty($book->file_ext) && $book->file_ext == 'doc' || $book->file_ext == 'docx' || $book->file_ext == 'ppt' || $book->file_ext == 'pptx')
+            <a class="zh" href="/msreader?p={{ $book->file }}" target="_blank">阅读</a>
+        @elseif(!empty($book->file_ext && $book->file_ext == 'pdf') )
+            <a class="zh" href="/reader/index.html#{{$book->file}}" target="_blank">阅读</a>
+        @endif
     @endif
     @can('update', $book)
         @if($isShow)

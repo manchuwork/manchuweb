@@ -26,7 +26,10 @@ Route::get('/text/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?
 Route::get('/storage/{one?}/{two?}/{three?}/{four?}/{five?}/{six?}/{seven?}/{eight?}/{nine?}','\App\Http\Controllers\ResourceController@pic');
 
 
-
 Route::get('/ime_manchu', '\App\Http\Controllers\ImeController@index');
+
+
+Route::get('/msreader','\App\Http\Controllers\MsReaderController@index');
+
 
 
