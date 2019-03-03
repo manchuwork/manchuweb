@@ -1,5 +1,5 @@
 <div class="content-wrap box_nav">
-    <a href="/home"><img src="/manchu_crest_50.png" alt="满族空间,www.manchu.work ,The manchu family crest"/></a>
+    <a href="/home" id="Logo"><img src="/manchu_crest_50.png" alt="满族空间,www.manchu.work ,The manchu family crest"/></a>
     <a href="/home">
         <span class="zh" style="font-size: small">首页</span>
     </a>

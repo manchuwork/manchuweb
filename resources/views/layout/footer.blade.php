@@ -1,6 +1,6 @@
 <hr/>
 <div id="to_left" title="返回左边">
-    <a href="#">
+    <a href="#Logo">
         <img src="/img/to_left" width="37" height="24">
     </a>
 </div>
