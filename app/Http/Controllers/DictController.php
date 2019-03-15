@@ -35,6 +35,12 @@ class DictController extends Controller
         $word = mb_ereg_replace('[ ]+$', '', $word);
         $word = mb_ereg_replace('&nbsp;', '', $word);
 
+        $word = mb_ereg_replace('q', 'c', $word);
+        $word = mb_ereg_replace('š', 'x', $word);
+
+        $word = mb_ereg_replace('ū', 'v', $word);
+
+
         $search_type = \request('search_type');
 
         $searchWord = $word;
@@ -42,6 +48,8 @@ class DictController extends Controller
             $searchWord = "%{$word}%";
         }elseif($search_type == 'pre'){
             $searchWord = "{$word}%";
+        }elseif($search_type == 'suffix'){
+            $searchWord = "%{$word}";
         }elseif($search_type == 'full'){
             $searchWord = "{$word}";
         }

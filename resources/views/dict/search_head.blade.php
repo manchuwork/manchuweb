@@ -9,6 +9,7 @@
         <select name="search_type">
             <option value="">模糊</option>
             <option value="pre" @if(isset($search_type) && $search_type == 'pre')selected @endif>前缀</option>
+            <option value="suffix" @if(isset($search_type) && $search_type == 'suffix')selected @endif>后缀</option>
             <option value="full" @if(isset($search_type) && $search_type == 'full')selected @endif>精确</option>
         </select>
     </form>
