@@ -68,3 +68,8 @@ mv ~/.env $TARGET_LARAVEL_DIR/.env
 ./package_local
 ```
 使用项目中的.env配置文件，用来测试重新打包结构后的网站是否正常
+
+备份
+```php
+php artisan backup:run --disable-notifications
+```

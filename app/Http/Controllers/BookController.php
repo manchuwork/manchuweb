@@ -19,7 +19,17 @@ class BookController extends Controller
             ->paginate(6);
 
 
-        return view('book/index',compact('books'));
+        $title_prefix = '';
+        $description = '';
+        if(!empty($books)){
+            foreach ($books as $book) {
+                $title_prefix .= $book->title .' '. $book->title_mnc . ',';
+
+                $description .=  $book->title .' '. $book->title_mnc . ' '. $book->author . ',';
+            }
+        }
+
+        return view('book/index',compact('books','title_prefix','description'));
     }
 
     public function show(Book $book){
@@ -34,7 +44,17 @@ class BookController extends Controller
         if(!isset($book['page_count']) || $book['page_count'] <= 0){
             unset($book['page_count']);
         }
-        return view('book/show',compact('book','isShow'));
+
+
+        $title_prefix = '';
+        $description = '';
+        if(!empty($book)) {
+            $title_prefix .= $book->title . ' ' . $book->title_mnc . ',';
+
+            $description .= $book->title . ' ' . $book->title_mnc . ' ' . $book->author . ',';
+        }
+
+            return view('book/show',compact('book','isShow','title_prefix', 'description'));
     }
 
     public function create(){

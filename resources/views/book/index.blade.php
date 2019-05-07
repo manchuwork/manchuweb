@@ -1,6 +1,7 @@
 @extends("layout.main")
-@section("title")ᠮᠠᠨᠵᡠ manchu满语图书@endsection
-
+@section("title"){{$title_prefix}} ᠮᠠᠨᠵᡠ manchu满语图书@endsection
+@section("keywords"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,图书查看@endsection
+@section("description"){{$description}}, ᠮᠠᠨᠵᡠ, manchu, manju,图书查看@endsection
 @section("content")
     @include("book.nav")
     <link rel="stylesheet" href="/css/book">
