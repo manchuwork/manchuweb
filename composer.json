@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.4",
         "intervention/image": "^2.4",
+        "jasny/sso": "^0.3.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "spatie/laravel-backup": "4.*"
