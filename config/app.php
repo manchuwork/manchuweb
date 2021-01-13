@@ -31,6 +31,8 @@ return [
      * 增加icp 备案配置
      */
     'icp' => env("ICP",''),
+
+    'ipc_url' => env('ICP_URL','https://beian.miit.gov.cn/'),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
