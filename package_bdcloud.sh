@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TARGET="bd_target"
+TARGET="manchuworkweb"
 ROOT_PATH=`dirname "$0"`
 cd $ROOT_PATH
 PROJECT_ROOT_PATH=`pwd`
