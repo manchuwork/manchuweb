@@ -33,6 +33,7 @@ return [
     'icp' => env("ICP",''),
 
     'ipc_url' => env('ICP_URL','https://beian.miit.gov.cn/'),
+    'create_year' => env('CREATE_YEAR', '2018'),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
