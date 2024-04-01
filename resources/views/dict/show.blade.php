@@ -32,4 +32,5 @@
             @endif
         @endcan
     </div>
+    @include("ad.ad_container_once")
 @endsection

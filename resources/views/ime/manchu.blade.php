@@ -594,33 +594,33 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         /* by Mac */
         @font-face {
             font-family: 'Abkai Xanyan';
-            src: url('http://abkai.net/fonts/abkai-xanyan.eot');
-            src: url('http://abkai.net/fonts/abkai-xanyan.eot?#iefix') format('embedded-opentype'),
-            url('http://abkai.net/fonts/abkai-xanyan.woff2') format('woff2'),
-            url('http://abkai.net/fonts/abkai-xanyan.woff') format('woff'),
-            url('http://abkai.net/fonts/abkai-xanyan.ttf') format('truetype');
+            src: url('/fonts/abkai-xanyan.eot');
+            src: url('/fonts/abkai-xanyan.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/abkai-xanyan.woff2') format('woff2'),
+            url('/fonts/abkai-xanyan.woff') format('woff'),
+            url('/fonts/abkai-xanyan.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Abkai Xanyan';
-            src: url('http://abkai.net/fonts/abkai-xanyan.b.eot');
-            src: url('http://abkai.net/fonts/abkai-xanyan.b.eot?#iefix') format('embedded-opentype'),
-            url('http://abkai.net/fonts/abkai-xanyan.b.woff2') format('woff2'),
-            url('http://abkai.net/fonts/abkai-xanyan.b.woff') format('woff'),
-            url('http://abkai.net/fonts/abkai-xanyan.b.ttf') format('truetype');
+            src: url('/fonts/abkai-xanyan.b.eot');
+            src: url('/fonts/abkai-xanyan.b.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/abkai-xanyan.b.woff2') format('woff2'),
+            url('/fonts/abkai-xanyan.b.woff') format('woff'),
+            url('/fonts/abkai-xanyan.b.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Abkai Iui';
-            src: url('http://abkai.net/fonts/abkai-iui.eot');
-            src: url('http://abkai.net/fonts/abkai-iui.eot?#iefix') format('embedded-opentype'),
-            url('http://abkai.net/fonts/abkai-iui.woff2') format('woff2'),
-            url('http://abkai.net/fonts/abkai-iui.woff') format('woff'),
-            url('http://abkai.net/fonts/abkai-iui.ttf') format('truetype');
+            src: url('/fonts/abkai-iui.eot');
+            src: url('/fonts/abkai-iui.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/abkai-iui.woff2') format('woff2'),
+            url('/fonts/abkai-iui.woff') format('woff'),
+            url('/fonts/abkai-iui.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -628,16 +628,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         @font-face {
             font-family: 'Mongolian Baiti';
             src: local("Mongolian Baiti"),
-            url('http://abkai.net/fonts/monbaiti.ttf') format('truetype');
+            url('/fonts/monbaiti.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'Noto Sans Mongolian';
-            src: url('http://abkai.net/fonts/notosansmongolian.eot');
-            src: url('http://abkai.net/fonts/notosansmongolian.eot?#iefix') format('embedded-opentype'),
-            url('http://abkai.net/fonts/notosansmongolian.woff2') format('woff2'),
-            url('http://abkai.net/fonts/notosansmongolian.woff') format('woff'),
-            url('http://abkai.net/fonts/notosansmongolian.ttf') format('truetype');
+            src: url('/fonts/notosansmongolian.eot');
+            src: url('/fonts/notosansmongolian.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/notosansmongolian.woff2') format('woff2'),
+            url('/fonts/notosansmongolian.woff') format('woff'),
+            url('/fonts/notosansmongolian.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -1589,6 +1589,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             activeTextAreaInstance.onfocus = function(){activeta=textAreaId;};
         }
     </script>
+    @include("ad.ad_header_js_css")
 </head>
 <body class="container">
 <div class="su-tabs su-tabs-style-default" data-active="1">
@@ -1604,16 +1605,32 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             </form>
             <p><script>makePhoneticEditor('manjus');
                 </script></p>
+            <div id="adContainer1" class="ad-container"></div>
+            <script>
+                // 调用 loadAd 函数并传入广告位容器的ID和广告数据的URL
+                loadAd('adContainer1', '{{config('app.ad_url')}}/api/ad?adzone_id={{config('app.adzone_id')}}');
+            </script>
         </div>
-        <div class="su-tabs-pane su-clearfix" id="tab2" style="display: block;">
+        <div class="su-tabs-pane su-clearfix" id="tab2" style="display: flex;">
             <form><textarea class="vert-rl xanyan" name="manjuc" id="manjuc" style="font-family: Abkai Xanyan, 太清白体; font-size: 36px; width: 670px; height: 670px;" cols="80" rows="10" onfocus=""></textarea>
+                <div id="adContainer2" class="ad-container"></div>
+                <script>
+                    // 调用 loadAd 函数并传入广告位容器的ID和广告数据的URL
+                    loadAd('adContainer2', '{{config('app.ad_url')}}/api/ad?adzone_id={{config('app.adzone_id')}}');
+                </script>
                 <p></p>
                 <p><input type="button" onclick="switched=!switched;" value="切换输入状态">　　　　<strong>太清在线输入法：满文</strong>　（<span style="color: red;">请将键盘输入法设置于拉丁字母/英文输入状态</span>）</p>
             </form>
             <p><script>makePhoneticEditor('manjuc');
                 </script></p>
+
         </div>
         <div class="su-tabs-pane su-clearfix" id="tab3" style="display: none;">
+            <div id="adContainer3" class="ad-container"></div>
+            <script>
+                // 调用 loadAd 函数并传入广告位容器的ID和广告数据的URL
+                loadAd('adContainer3', '{{config('app.ad_url')}}/api/ad?adzone_id={{config('app.adzone_id')}}');
+            </script>
             <em>Windows</em><br>
             【标准模式】Edge、IE、<a href="http://abkai.net/core/zh/read-me-first/configure-applications/" target="_blank">Firefox（火狐）</a>、Safari、双核浏览器 <span style="font-size:85%;">兼容模式·IE内核</span><br>
             【兼容模式】Chrome、Opera、遨游云浏览器、双核浏览器 <span style="font-size:85%;">急速模式·Chromium内核</span><p></p>
@@ -1685,6 +1702,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         <script src="/share/js/social-share.min.js"></script>
     </div>
 </div>
+
 <script>
     $('[data-url]').click(function () {
 

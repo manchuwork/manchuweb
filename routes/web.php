@@ -85,6 +85,7 @@ Route::get('/dicts/{dict}/delete', '\App\Http\Controllers\DictController@delete'
 
 Route::get('/dict', '\App\Http\Controllers\DictController@queryWord');
 
+Route::get('/books/search', '\App\Http\Controllers\BookController@search');
 Route::resource("books",'\App\Http\Controllers\BookController');
 
 Route::get("books/{book}/delete",'\App\Http\Controllers\BookController@delete');

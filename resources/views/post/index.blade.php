@@ -29,4 +29,5 @@
     @if( !$posts || sizeof($posts) == 0)
         <div class="zh">还没有文章！</div>
     @endif
+    @include("ad.ad_container_once")
 @endsection

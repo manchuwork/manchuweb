@@ -1,6 +1,6 @@
 <div class="content-wrap">
     <a href="/dicts/search">
-        <span class="zh">词典搜索</span></span>
+        <span class="zh">词典搜索</span>
     </a>
     <a href="/dicts">
         <span class="zh">词典列表</span>

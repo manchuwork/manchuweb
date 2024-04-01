@@ -11,7 +11,6 @@
                     class="iciba_switch_off">OFF</span></div>
     </div>
     <i class="iciba_switch-icon"></i><span class="iciba_switch_txt"> 即划即译</span>
-
 </div>
 <script src="{{asset('js/dragword')}}"></script>
 <div class="english-right">@Copy Right {{config('app.create_year')}}-{{date('Y')}} http://www.manchu.work/ @if(!empty(config('app.icp')))<a href="{{config('app.icp_url')}}" class="zh">{{config('app.icp')}}</a>@endif</div>

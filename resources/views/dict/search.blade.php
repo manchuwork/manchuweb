@@ -6,7 +6,12 @@
     @include("dict.nav")
     <script src="/js/dict"></script>
     @include("dict.search_head")
-
+    @include("ad.ad_header_js_css")
+    <div id="adContainer1" class="ad-container"></div>
+    <script>
+        // 调用 loadAd 函数并传入广告位容器的ID和广告数据的URL
+        loadAd('adContainer1', '{{config('app.ad_url')}}/api/ad?adzone_id={{config('app.adzone_id')}}');
+    </script>
     @if(isset($dicts) && (sizeof($dicts) > 0))
 
     @foreach($dicts as $dict)
@@ -35,6 +40,11 @@
         </div>
     @endforeach
     {{$dicts->appends('word',$word)->links()}}
+    <div id="adContainer2" class="ad-container"></div>
+    <script>
+        // 调用 loadAd 函数并传入广告位容器的ID和广告数据的URL
+        loadAd('adContainer2', '{{config('app.ad_url')}}/api/ad?adzone_id={{config('app.adzone_id')}}');
+    </script>
     @elseif(empty($word))
         <div class="mnc"></div>
 

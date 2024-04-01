@@ -33,6 +33,8 @@ return [
     'icp' => env("ICP",''),
 
     'icp_url' => env('ICP_URL','https://beian.miit.gov.cn/'),
+    'ad_url' => env("AD_URL",'http://localhost:8080'),
+    'adzone_id' => env("ADZONE_ID",'115659650314'),
     'create_year' => env('CREATE_YEAR', '2018'),
     /*
     |--------------------------------------------------------------------------

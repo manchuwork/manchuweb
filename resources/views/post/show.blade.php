@@ -110,4 +110,5 @@
             });
         });
     </script>
+    @include("ad.ad_container_once")
 @endsection

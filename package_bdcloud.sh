@@ -18,15 +18,17 @@ echo "mkdir -pv "$TARGET_BASE_DIR
 mkdir -pv $TARGET_BASE_DIR
 echo "TARGET:$TARGET"
 
+echo "rm -rf $TARGET_BASE_DIR/*"
 rm -rf $TARGET_BASE_DIR/*
-`cp  -Rf $PROJECT_ROOT_PATH/ $TARGET_BASE_DIR`
+echo "cp  -Rf $PROJECT_ROOT_PATH/* $TARGET_BASE_DIR"
+`cp  -Rf $PROJECT_ROOT_PATH/* $TARGET_BASE_DIR`
 
 #清理文件
 rm -rf $TARGET_BASE_DIR/.env
 rm -rf $TARGET_BASE_DIR/.env.example
 rm -rf $TARGET_BASE_DIR/.gitattributes
 rm -rf $TARGET_BASE_DIR/.gitignore
-rm -rf $TARGET_BASE_DIR/.htaccess
+#rm -rf $TARGET_BASE_DIR/.htaccess
 rm -rf $TARGET_BASE_DIR/.idea
 
 rm -rf $TARGET_BASE_DIR/public/css_bak
@@ -53,8 +55,10 @@ rm -rf $TARGET_BASE_DIR/tests
 #ln -s $TARGET_LARAVEL_DIR/storage/app/public $TARGET_BASE_DIR/storage
 
 # 准备打包
+echo "prepare package"
 cd $TARGET_BASE_DIR/
-echo `pwd`
+C=`pwd`
+echo "prepare package, now path: $C"
 echo "rm $APP_BASE/${TARGET}.zip"
 rm $APP_BASE/${TARGET}.zip
 zip -r $APP_BASE/${TARGET}.zip *
