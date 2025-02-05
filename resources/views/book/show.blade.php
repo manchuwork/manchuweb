@@ -61,4 +61,5 @@
             </a>
         @endif
     @endcan
+    @include("ad.ad_container_once")
 @endsection

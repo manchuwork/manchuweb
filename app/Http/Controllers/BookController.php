@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dict;
 use App\Tool\FileTool;
 use App\Tool\ImageTool;
 
@@ -10,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class BookController extends Controller
 {
     //
+    public function search(\Psr\Log\LoggerInterface $log){
+
+        return $this->query($log);
+        //return view('dict/search');
+    }
     public function index(\Psr\Log\LoggerInterface $log){
 
         //$app = app();
@@ -258,5 +264,59 @@ class BookController extends Controller
         $bookNewWithFiler = $this->_unsetNull($params);
 
         return $bookNewWithFiler;
+    }
+
+    private function query(\Psr\Log\LoggerInterface $log)
+    {
+        $r = $this->queryInner();
+
+        return view('book/search',$r);
+    }
+
+    private function queryInner(){
+        $word  = \request('word');
+        $word = trim($word);
+
+        $word = mb_ereg_replace('^[ ]+', '', $word);
+        $word = mb_ereg_replace('[ ]+$', '', $word);
+        $word = mb_ereg_replace('&nbsp;', '', $word);
+
+        $search_type = \request('search_type');
+
+//        $searchWord = $word;
+        $searchWord = "%{$word}%";
+
+        if(!isset($search_type)){
+            $searchWord = "%{$word}%";
+        }elseif($search_type == 'title'){
+            $searchWord = "{$word}%";
+        }elseif($search_type == 'suffix'){
+            $searchWord = "%{$word}";
+        }elseif($search_type == 'full'){
+            $searchWord = "{$word}";
+        }
+
+        if(preg_match('/[\x{4e00}-\x{9fa5}]/u', $word)>0){
+            // 含有中文
+            $books = Book::where('title', 'like', $searchWord)
+                ->orderBy('created_at','desc')->paginate(10);
+        }else if(preg_match('/[\x{1800}-\x{18AF}]/u', $word)>0){
+            // 含有满文
+            $books = Book::where('title_mnc', 'like', $searchWord)->orderBy('created_at','desc')->paginate(10);
+        }else if(!empty($word)){
+            // 英文处理
+            $books = Book::where('translator', 'like', $searchWord)->orderBy('created_at','desc')->paginate(10);
+        }
+
+        $title_prefix = '';
+        $description = '';
+        if(!empty($books)){
+            foreach ($books as $dict) {
+                $title_prefix .= $dict->manchu .' '. $dict->trans . ',';
+
+                $description .=  $dict->manchu .' '. $dict->trans . ' '. $dict->trans_zh . ',';
+            }
+        }
+        return compact('books','word','search_type','title_prefix','description');
     }
 }

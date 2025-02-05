@@ -2,8 +2,8 @@
 <html lang="mnc"><!-- Manchu 满语 -->
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content="Manchu,满语,ᠮᠠᠨᠵᡠ,ᡤᡳᠰᡠᠨ,满族空间,www.manchu.work 满族空间是个学习满语的空间">
-    <meta name="keywords" content="Manchu,满语,ᠮᠠᠨᠵᡠ,ᡤᡳᠰᡠᠨ,满族空间,www.manchu.work">
+    <meta name="description" content="Manchu,满语,ᠮᠠᠨᠵᡠ,ᡤᡳᠰᡠᠨ,满族空间,www.manchu.work,manchu.work,manchuwork, 满族空间是个学习满语的空间">
+    <meta name="keywords" content="Manchu,满语,ᠮᠠᠨᠵᡠ,ᡤᡳᠰᡠᠨ,满族空间,www.manchu.work,manchu.work,manchuwork,学习满语的空间">
     <meta name="baidu-site-verification" content="21DYokPZhR" />
 
     <title>满族空间 Manchu 满语 ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ</title>

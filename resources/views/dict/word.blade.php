@@ -31,7 +31,6 @@ try{
 }catch (e){
     alert("暂无找到 id为dict的DIV");
 }
-
 {{--function scb_scroll(){--}}
     {{--window.location.href = "http://my.iciba.com/?returnurl=" + window.location.href;--}}
 {{--}--}}

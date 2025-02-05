@@ -1,9 +1,10 @@
 @extends("layout.main")
 @section("title"){{$title_prefix}} ᠮᠠᠨᠵᡠ manchu满语图书@endsection
-@section("keywords"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,图书查看@endsection
-@section("description"){{$description}}, ᠮᠠᠨᠵᡠ, manchu, manju,图书查看@endsection
+@section("keywords"){{$title_prefix}}, ᠮᠠᠨᠵᡠ, manchu, manju,manchu.work,manchuwork, 图书查看@endsection
+@section("description"){{$description}}, ᠮᠠᠨᠵᡠ, manchu, manju,manchu.work,manchuwork,图书查看@endsection
 @section("content")
     @include("book.nav")
+    @include("book.search_head")
     <link rel="stylesheet" href="/css/book">
     <section class="column-list">
         {{--<div class="hd lined"><h3>悬疑小说</h3>--}}
@@ -61,4 +62,5 @@
             </ul>
         </div>
     </section>
+    @include("ad.ad_container_once")
 @endsection
