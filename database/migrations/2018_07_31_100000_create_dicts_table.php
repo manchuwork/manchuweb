@@ -22,6 +22,8 @@ class CreateDictsTable extends Migration
             $table->text('chinese');
             $table->string('pic',512);
             $table->integer('user_id')->default(0);
+            $table->string('word_types',512);
+            $table->tinyInteger('type')->default(1);
             $table->timestamps();
         });
     }

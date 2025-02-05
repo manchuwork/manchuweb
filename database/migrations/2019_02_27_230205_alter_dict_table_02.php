@@ -16,7 +16,7 @@ class AlterDictTable02 extends Migration
         //
         Schema::table('dicts', function (Blueprint $table) {
             //  id1,id2,id4
-            $table->string('word_types',512);
+//            $table->string('word_types',512);
 
         });
     }
